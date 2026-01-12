@@ -25,12 +25,12 @@ export interface PackageData {
 }
 
 export const PACKAGE_DATA: PackageData = {
-  packageName: '@gfazioli/mantine-flip',
+  packageName: '@gfazioli/mantine-fed',
   packageDescription:
-    'A Mantine component that flips the content of the component when hovered over.',
-  mdxFileUrl: 'https://github.com/gfazioli/mantine-flip/blob/master/docs/docs.mdx',
-  repositoryUrl: 'https://github.com/gfazioli/mantine-flip',
-  licenseUrl: 'https://github.com/gfazioli/mantine-flip/blob/master/LICENSE',
+    'A Mantine component that feds the content of the component when hovered over.',
+  mdxFileUrl: 'https://github.com/gfazioli/mantine-fed/blob/master/docs/docs.mdx',
+  repositoryUrl: 'https://github.com/gfazioli/mantine-fed',
+  licenseUrl: 'https://github.com/gfazioli/mantine-fed/blob/master/LICENSE',
   author: {
     name: 'Giovambattista Fazioli',
     githubUsername: 'gfazioli',

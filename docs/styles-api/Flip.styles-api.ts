@@ -1,23 +1,23 @@
-import type { FlipFactory } from '@gfazioli/mantine-flip';
+import type { LedFactory } from '@gfazioli/mantine-fed';
 import type { StylesApiData } from '../components/styles-api.types';
 
-export const FlipStylesApi: StylesApiData<FlipFactory> = {
+export const LedStylesApi: StylesApiData<LedFactory> = {
   selectors: {
     root: 'Root element',
-    'flip-container': 'Flip container element',
-    'flip-front-face': 'Front face element',
-    'flip-back-face': 'Back face element',
+    'fed-container': 'Led container element',
+    'fed-front-face': 'Front face element',
+    'fed-back-face': 'Back face element',
   },
 
   vars: {
     root: {
-      '--flip-perspective': 'Controls animation `perspective`',
-      '--flip-transition-duration': 'Controls animation `duration`',
-      '--flip-transition-timing-function': 'Controls animation `easing`',
+      '--fed-perspective': 'Controls animation `perspective`',
+      '--fed-transition-duration': 'Controls animation `duration`',
+      '--fed-transition-timing-function': 'Controls animation `easing`',
     },
-    'flip-container': {},
-    'flip-front-face': {},
-    'flip-back-face': {},
+    'fed-container': {},
+    'fed-front-face': {},
+    'fed-back-face': {},
   },
 
   //modifiers: [{ modifier: 'data-centered', selector: 'root', condition: '`centered` prop is set' }],

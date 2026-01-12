@@ -1,4 +1,4 @@
-import { Flip } from '@gfazioli/mantine-flip';
+import { Led } from '@gfazioli/mantine-fed';
 import {
   Badge,
   Button,
@@ -17,7 +17,7 @@ import { MantineDemo } from '@mantinex/demo';
 function Wrapper(props: any) {
   return (
     <Center>
-      <Flip h={200} w={400} {...props}>
+      <Led h={200} w={400} {...props}>
         <Card shadow="sm" padding="lg" radius="md" withBorder>
           <Card.Section>
             <Image
@@ -40,11 +40,11 @@ function Wrapper(props: any) {
           </Text>
 
           <Group justify="right">
-            <Flip.Target>
+            <Led.Target>
               <Button color="blue" mt="md" radius="md">
                 Edit Widget
               </Button>
-            </Flip.Target>
+            </Led.Target>
           </Group>
         </Card>
 
@@ -59,26 +59,26 @@ function Wrapper(props: any) {
             <Switch c="white" defaultChecked label="Display image" />
             <Switch c="white" label="Auto play" />
             <Group justify="left">
-              <Flip.Target>
+              <Led.Target>
                 <Button color="red" mt="md" radius="md">
                   Close
                 </Button>
-              </Flip.Target>
+              </Led.Target>
             </Group>
           </Stack>
         </Paper>
-      </Flip>
+      </Led>
     </Center>
   );
 }
 
 const code = `
-import { Flip } from '@gfazioli/mantine-flip'';
+import { Led } from '@gfazioli/mantine-fed'';
 
 function Demo() {
   return (
     <Center>
-      <Flip h={200} w={400}{{props}}>
+      <Led h={200} w={400}{{props}}>
         <Card shadow="sm" padding="lg" radius="md" withBorder>
           <Card.Section>
             <Image
@@ -101,11 +101,11 @@ function Demo() {
           </Text>
 
           <Group justify="right">
-            <Flip.Target>
+            <Led.Target>
               <Button color="blue" mt="md" radius="md">
                 Edit Widget
               </Button>
-            </Flip.Target>
+            </Led.Target>
           </Group>
         </Card>
 
@@ -120,13 +120,13 @@ function Demo() {
             <Switch c="white" defaultChecked label="Display image" />
             <Switch c="white" label="Auto play" />
             <Group justify="left">
-              <Flip.Target>
+              <Led.Target>
                 <Button color="red" mt="md" radius="md">Close</Button>
-              </Flip.Target>
+              </Led.Target>
             </Group>
           </Stack>
         </Paper>
-      </Flip>
+      </Led>
     </Center>
   );
 }
@@ -148,7 +148,7 @@ export const configurator: MantineDemo = {
       libraryValue: 'horizontal',
     },
     {
-      prop: 'directionFlipIn',
+      prop: 'directionLedIn',
       type: 'select',
       data: [
         { label: 'Negative', value: 'negative' },
@@ -158,7 +158,7 @@ export const configurator: MantineDemo = {
       libraryValue: 'negative',
     },
     {
-      prop: 'directionFlipOut',
+      prop: 'directionLedOut',
       type: 'select',
       data: [
         { label: 'Positive', value: 'positive' },

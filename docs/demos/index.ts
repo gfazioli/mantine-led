@@ -1,2 +1,2 @@
-export { configurator } from './Flip.demo.configurator';
-export { controlled } from './Flip.demo.controlled';
+export { configurator } from './Led.demo.configurator';
+export { controlled } from './Led.demo.controlled';
