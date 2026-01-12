@@ -25,12 +25,12 @@ export interface PackageData {
 }
 
 export const PACKAGE_DATA: PackageData = {
-  packageName: '@gfazioli/mantine-fed',
+  packageName: '@gfazioli/mantine-led',
   packageDescription:
     'A Mantine component that feds the content of the component when hovered over.',
-  mdxFileUrl: 'https://github.com/gfazioli/mantine-fed/blob/master/docs/docs.mdx',
-  repositoryUrl: 'https://github.com/gfazioli/mantine-fed',
-  licenseUrl: 'https://github.com/gfazioli/mantine-fed/blob/master/LICENSE',
+  mdxFileUrl: 'https://github.com/gfazioli/mantine-led/blob/master/docs/docs.mdx',
+  repositoryUrl: 'https://github.com/gfazioli/mantine-led',
+  licenseUrl: 'https://github.com/gfazioli/mantine-led/blob/master/LICENSE',
   author: {
     name: 'Giovambattista Fazioli',
     githubUsername: 'gfazioli',

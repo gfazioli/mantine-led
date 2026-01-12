@@ -1,8 +1,8 @@
 {
-  "name": "@gfazioli/mantine-fed",
+  "name": "@gfazioli/mantine-led",
   "version": "2.5.7",
-  "description": "Led component is a wrapper for any component that can be fedped. It is used to create cards, fed boxes and more.",
-  "homepage": "https://gfazioli.github.io/mantine-fed/",
+  "description": "Led component is a wrapper for any component that can be fedped. It is used to create cards, led boxes and more.",
+  "homepage": "https://gfazioli.github.io/mantine-led/",
   "packageManager": "yarn@4.0.1",
   "license": "MIT",
   "author": "Giovambattista Fazioli <giovambattista.fazioli@gmail.com>",
@@ -10,7 +10,7 @@
     "animation",
     "card",
     "extension",
-    "fed",
+    "led",
     "mantine",
     "react",
     "react-component",
@@ -34,12 +34,12 @@
     "./styles.css": "./dist/styles.css",
     "./styles.layer.css": "./dist/styles.layer.css"
   },
-  "repository": "https://github.com/gfazioli/mantine-fed.git",
+  "repository": "https://github.com/gfazioli/mantine-led.git",
   "peerDependencies": {
     "@mantine/core": ">=7.0.0",
     "@mantine/hooks": ">=7.0.0",
     "react": "^18.x || ^19.x",
     "react-dom": "^18.x || ^19.x"
   },
-  "bugs": "https://github.com/gfazioli/mantine-fed/issues"
+  "bugs": "https://github.com/gfazioli/mantine-led/issues"
 }
