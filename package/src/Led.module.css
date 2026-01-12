@@ -1,5 +1,26 @@
 .root {
+  --led-size-xs: 6px;
+  --led-size-sm: 8px;
+  --led-size-md: 16px;
+  --led-size-lg: 32px;
+  --led-size-xl: 64px;
+
+  width: var(--led-size);
+  height: var(--led-size);
+  border-radius: calc(var(--led-radius));
+
+  background-color: var(--led-color);
 }
 
 .light {
+  /** Calc the width as 5% of the led size */
+  width: calc(var(--led-size) * 0.2);
+  /** Calc the height as 5% of the led size */
+  height: calc(var(--led-size) * 0.2);
+  background-color: white;
+  border-radius: 50%;
+  position: relative;
+  top: 20%;
+  left: 20%;
+  filter: blur(2px);
 }
