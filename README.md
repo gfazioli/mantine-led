@@ -1,6 +1,6 @@
 # Mantine Led Component
 
-<img width="2752" height="1536" alt="Mantine Led" src="https://github.com/user-attachments/assets/81a00eee-c1f2-40f1-8ad4-4357619cf855" />
+<img  alt="Mantine Led" src="https://github.com/gfazioli/mantine-led/blob/master/logo.png" />
 
 <div align="center">
 
