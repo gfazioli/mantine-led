@@ -87,10 +87,6 @@ Your help truly matters.
 💚 [Become a sponsor](https://github.com/sponsors/gfazioli?o=esc) today and help me keep this project reliable, up‑to‑date, and growing for everyone.
 
 ---
-
-https://github.com/user-attachments/assets/cc968450-9d8c-4b16-be58-a6766597742e
-
----
   
 [![Star History Chart](https://api.star-history.com/svg?repos=gfazioli/mantine-led&type=Timeline)](https://www.star-history.com/#gfazioli/mantine-led&Timeline)
 
