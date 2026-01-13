@@ -17,10 +17,78 @@ You can import styles within a layer `@layer mantine-led` by importing `@gfaziol
 import '@gfazioli/mantine-led/styles.layer.css';
 ```
 
+# LED Indicator Component
+
+The `Led` component is a highly customizable LED indicator for React applications built with Mantine. It provides visual feedback for status indicators, notifications, and interactive elements with support for various colors, sizes, animations, and states.
+
+## Features
+
+- 🎨 **Theme Integration**: Full Mantine theme support with all theme colors
+- 📐 **Flexible Sizing**: Supports all Mantine sizes plus custom values
+- ✨ **Rich Animations**: Multiple animation types (pulse, flash, breathe, blink, glow)
+- 🎭 **Visual Variants**: Flat and 3D rendering styles
+- 🏷️ **Label Support**: Optional labels with configurable positioning
+- 🎛️ **Controlled State**: Full control over the LED on/off state
+- ♿ **Accessibility**: Follows WAI-ARIA best practices
+- 🎨 **Styles API**: Extensive styling customization support
+- 📦 **TypeScript**: Full type safety out of the box
+
+å
+
 ## Usage
+
+The simplest way to use the Led component is with the `value` prop to control its state:
+
+<Demo data={demos.basic} />
+
+## Interactive Configurator
+
+Explore all available props and see the component in action:
 
 <Demo data={demos.configurator} />
 
-> **IMPORTANT**
->
-> The `Led` component must have exactly **two** children. The first child is the front face, and the second child is the back face.
+## Colors
+
+The Led component supports all Mantine theme colors. Use the `color` prop to set the LED color:
+
+<Demo data={demos.colors} />
+
+## Animations
+
+Add visual feedback with built-in animations. The component supports multiple animation types:
+
+- **pulse**: Smooth pulsing effect (default)
+- **flash**: Quick flashing
+- **breathe**: Slow breathing effect
+- **blink**: Regular blinking
+- **glow**: Glowing effect with increased intensity
+
+<Demo data={demos.animations} />
+
+## Controlled Component
+
+The Led component is fully controlled through the `value` prop. Here's an example of controlling the LED state:
+
+<Demo data={demos.controlled} />
+
+## Labels
+
+Add descriptive labels to your LED indicators with full customization support:
+
+<Demo data={demos.labels} />
+
+The `label` prop accepts any React node, allowing you to use custom components like badges, icons, or formatted text. Use `labelPosition` to control whether the label appears on the left or right side of the LED.
+
+## Use Cases
+
+### System Status Panel
+
+Monitor multiple system components with organized LED indicators:
+
+<Demo data={demos.statusPanel} />
+
+### DEFCON Alert System
+
+A fun example showing how to build a DEFCON (Defense Readiness Condition) alert system with animated LEDs:
+
+<Demo data={demos.defcon} />

@@ -37,4 +37,5 @@ export const colors: MantineDemo = {
     </Group>
   ),
   code,
+  defaultExpanded: false,
 };

@@ -4,6 +4,8 @@ import type { StylesApiData } from '../components/styles-api.types';
 export const LedStylesApi: StylesApiData<LedFactory> = {
   selectors: {
     root: 'Root element',
+    led: 'LED element',
+    label: 'Label element',
     glow: 'Outer glow effect element',
     light: 'Inner light reflection element',
   },

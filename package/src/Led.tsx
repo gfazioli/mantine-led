@@ -79,7 +79,7 @@ export type LedFactory = PolymorphicFactory<{
 
 const defaultProps: Partial<LedProps> = {
   color: 'green',
-  size: 'md',
+  size: 'sm',
   radius: 'xl',
   value: true,
   variant: 'flat',
@@ -91,7 +91,7 @@ const defaultProps: Partial<LedProps> = {
 };
 
 const varsResolver = createVarsResolver<LedFactory>(
-  (theme, { size, radius, color, intensity, animationDuration, labelPosition }) => {
+  (theme, { size, radius, color, intensity, animationDuration }) => {
     return {
       root: {
         '--led-size': getSize(size, 'led-size'),

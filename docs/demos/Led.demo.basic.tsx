@@ -12,5 +12,7 @@ function Demo() {
 export const basic: MantineDemo = {
   type: 'code',
   component: () => <Led value />,
+  centered: true,
   code,
+  defaultExpanded: false,
 };

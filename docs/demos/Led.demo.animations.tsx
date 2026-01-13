@@ -61,4 +61,5 @@ export const animations: MantineDemo = {
     </Group>
   ),
   code,
+  defaultExpanded: false,
 };

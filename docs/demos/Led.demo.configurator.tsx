@@ -83,5 +83,21 @@ export const configurator: MantineDemo = {
       max: 5,
       step: 0.5,
     },
+    {
+      type: 'string',
+      prop: 'label',
+      initialValue: '',
+      libraryValue: '',
+    },
+    {
+      type: 'segmented',
+      prop: 'labelPosition',
+      initialValue: 'right',
+      libraryValue: 'right',
+      data: [
+        { value: 'left', label: 'Left' },
+        { value: 'right', label: 'Right' },
+      ],
+    },
   ],
 };
