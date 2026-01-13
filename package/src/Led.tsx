@@ -59,8 +59,10 @@ export interface LedBaseProps {
   /** Animation duration in seconds */
   animationDuration?: number;
 
+  /** Label content */
   label?: React.ReactNode;
 
+  /** Label position */
   labelPosition?: 'left' | 'right';
 }
 
