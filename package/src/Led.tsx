@@ -3,6 +3,7 @@ import {
   Box,
   BoxProps,
   createVarsResolver,
+  getFontSize,
   getRadius,
   getSize,
   getThemeColor,
@@ -21,7 +22,7 @@ export type LedVariant = 'flat' | '3d';
 
 export type LedAnimationType = 'pulse' | 'flash' | 'breathe' | 'blink' | 'glow' | 'none';
 
-export type LedStylesNames = 'root' | 'light' | 'glow';
+export type LedStylesNames = 'root' | 'led' | 'label' | 'light' | 'glow';
 
 export type LedCssVariables = {
   root:
@@ -57,6 +58,10 @@ export interface LedBaseProps {
 
   /** Animation duration in seconds */
   animationDuration?: number;
+
+  label?: React.ReactNode;
+
+  labelPosition?: 'left' | 'right';
 }
 
 export interface LedProps extends BoxProps, LedBaseProps, StylesApiProps<LedFactory> {}
@@ -80,20 +85,23 @@ const defaultProps: Partial<LedProps> = {
   animate: false,
   animationType: 'none',
   animationDuration: 1.5,
+  labelPosition: 'right',
 };
 
 const varsResolver = createVarsResolver<LedFactory>(
-  (theme, { size, radius, color, intensity, animationDuration }) => ({
-    root: {
-      '--led-size': getSize(size, 'led-size'),
-      '--led-radius': radius === undefined ? undefined : getRadius(radius),
-      '--led-color': getThemeColor(color, theme),
-      '--led-intensity': intensity !== undefined ? `${intensity / 100}` : '0.8',
-      '--led-animation-duration':
-        animationDuration !== undefined ? `${animationDuration}s` : '1.5s',
-      '--led-glow-size': `calc(var(--led-size) * 0.6)`,
-    },
-  })
+  (theme, { size, radius, color, intensity, animationDuration, labelPosition }) => {
+    return {
+      root: {
+        '--led-size': getSize(size, 'led-size'),
+        '--led-radius': radius === undefined ? undefined : getRadius(radius),
+        '--led-color': getThemeColor(color, theme),
+        '--led-intensity': intensity !== undefined ? `${intensity / 100}` : '0.8',
+        '--led-animation-duration':
+          animationDuration !== undefined ? `${animationDuration}s` : '1.5s',
+        '--led-glow-size': `calc(var(--led-size) * 0.6)`,
+      },
+    };
+  }
 );
 
 export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
@@ -108,6 +116,8 @@ export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
     animate,
     animationType,
     variant,
+    label,
+    labelPosition,
 
     classNames,
     style,
@@ -115,7 +125,7 @@ export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
     unstyled,
     vars,
     className,
-
+    mod,
     ...others
   } = props;
 
@@ -137,12 +147,22 @@ export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
       ref={ref}
       {...getStyles('root')}
       {...others}
-      variant={variant}
-      data-value={value || undefined}
-      data-animate={animate && value ? animationType : undefined}
+      mod={[{ 'label-position': labelPosition }, mod]}
+      __vars={{
+        '--label-fz': getFontSize(size),
+        '--label-lh': getSize(size, 'label-lh'),
+      }}
     >
-      <Box {...getStyles('glow')} />
-      <Box {...getStyles('light')} />
+      <Box
+        {...getStyles('led')}
+        variant={variant}
+        data-value={value || undefined}
+        data-animate={animate && value ? animationType : undefined}
+      >
+        <Box {...getStyles('glow')} />
+        <Box {...getStyles('light')} />
+      </Box>
+      {label && <Box {...getStyles('label')}>{label}</Box>}
     </Box>
   );
 });

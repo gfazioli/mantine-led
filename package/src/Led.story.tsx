@@ -1,5 +1,5 @@
 import React from 'react';
-import { Group, Paper, Stack, Text } from '@mantine/core';
+import { Divider, Group, Paper, Stack, Text } from '@mantine/core';
 import { Led, type LedProps } from './Led';
 
 export default {
@@ -15,6 +15,13 @@ export default {
     animationDuration: 1.5,
   },
   argTypes: {
+    label: {
+      control: 'text',
+    },
+    labelPosition: {
+      control: 'select',
+      options: ['left', 'right'],
+    },
     size: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
@@ -200,4 +207,31 @@ export function Usage() {
 
 export function WithProps(props: LedProps) {
   return <Led {...props} />;
+}
+
+export function WithLabel() {
+  return (
+    <>
+      <Group>
+        <Led label="Server Online" color="green" />
+        <Led label="Server Offline" color="red" value={false} />
+        <Led label={<Text c="blue">Custom Label</Text>} color="blue" />
+      </Group>
+      <Divider />
+      <div>
+        <Led label="Left Label" labelPosition="left" color="orange" />
+      </div>
+
+      <div>
+        <Led label="Right Label" labelPosition="right" color="pink" />
+      </div>
+
+      <Divider />
+      <Stack>
+        <Led label="Left Label" labelPosition="left" color="orange" />
+
+        <Led label="Right Label" labelPosition="right" color="pink" />
+      </Stack>
+    </>
+  );
 }

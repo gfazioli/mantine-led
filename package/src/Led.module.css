@@ -5,12 +5,29 @@
   --led-size-lg: 32px;
   --led-size-xl: 48px;
 
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mantine-spacing-xs);
+
+  &[data-label-position='left'] {
+    --led-label-order: 1;
+    --led-led-order: 2;
+  }
+
+  &[data-label-position='right'] {
+    --led-label-order: 2;
+    --led-led-order: 1;
+  }
+}
+
+.led {
   position: relative;
   width: var(--led-size);
   height: var(--led-size);
   border-radius: var(--led-radius);
   transition: all 0.3s ease;
   display: inline-block;
+  order: var(--led-led-order, 1);
 
   /* Default off state - dimmed */
   background-color: color-mix(in srgb, var(--led-color) 20%, #000 80%);
@@ -60,6 +77,13 @@
         /* Outer shadow */ 0 2px 4px rgba(0, 0, 0, 0.2);
     }
   }
+}
+
+.label {
+  display: flex;
+  order: var(--led-label-order, 2);
+  font-size: var(--label-fz, var(--mantine-font-size-sm));
+  line-height: var(--label-lh);
 }
 
 .glow {
