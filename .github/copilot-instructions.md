@@ -127,6 +127,35 @@ Per `@ianvs/prettier-plugin-sort-imports` config:
 
 Run `npm run prettier:write` before commits.
 
+### CSS Coding Standards
+
+**Critical CSS Rules** (enforced by stylelint):
+
+1. **Keyframe Naming**: Always use **kebab-case** for `@keyframes` names
+   - ✅ Correct: `@keyframes led-pulse`, `@keyframes fade-in`
+   - ❌ Wrong: `@keyframes ledPulse`, `@keyframes fadeIn`
+
+2. **No Shorthand After Longhand**: Never use shorthand properties after their longhand equivalents
+   - ❌ Wrong:
+     ```css
+     .element {
+       background-color: red;
+       background: blue;  /* ERROR: overrides background-color */
+     }
+     ```
+   - ✅ Correct:
+     ```css
+     .element {
+       background: blue;  /* Use shorthand only */
+     }
+     ```
+
+3. **CSS Variable Naming**: Use kebab-case for custom properties
+   - ✅ Correct: `--led-size`, `--component-color`
+   - ❌ Wrong: `--ledSize`, `--componentColor`
+
+**Validation**: Run `npm run lint` to catch violations before commit.
+
 ### Testing Requirements
 Use `@mantine-tests/core` renderer (not `@testing-library/react` directly):
 

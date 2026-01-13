@@ -15,7 +15,7 @@ describe('Led', () => {
   });
 
   it('applies value prop as data attribute when true', () => {
-    const { container } = render(<Led value={true} />);
+    const { container } = render(<Led />);
     const root = container.querySelector('[data-value]');
     expect(root).toBeTruthy();
   });
@@ -27,19 +27,19 @@ describe('Led', () => {
   });
 
   it('applies animation type as data attribute when animate is true and value is true', () => {
-    const { container } = render(<Led animate={true} animationType="pulse" value={true} />);
+    const { container } = render(<Led animate animationType="pulse" />);
     const root = container.querySelector('[data-animate="pulse"]');
     expect(root).toBeTruthy();
   });
 
   it('does not apply animation when animate is false', () => {
-    const { container } = render(<Led animate={false} animationType="pulse" value={true} />);
+    const { container } = render(<Led animate={false} animationType="pulse" />);
     const root = container.querySelector('[data-animate]');
     expect(root).toBeFalsy();
   });
 
   it('does not apply animation when value is false', () => {
-    const { container } = render(<Led animate={true} animationType="pulse" value={false} />);
+    const { container } = render(<Led animate animationType="pulse" value={false} />);
     const root = container.querySelector('[data-animate]');
     expect(root).toBeFalsy();
   });

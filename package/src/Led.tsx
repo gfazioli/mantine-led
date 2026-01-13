@@ -75,7 +75,7 @@ const defaultProps: Partial<LedProps> = {
   size: 'md',
   radius: 'xl',
   value: true,
-  variant: '3d',
+  variant: 'flat',
   intensity: 80,
   animate: false,
   animationType: 'none',
@@ -99,16 +99,23 @@ const varsResolver = createVarsResolver<LedFactory>(
 export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
   const props = useProps('Led', defaultProps, _props);
   const {
+    size,
+    radius,
+    color,
+    intensity,
+    animationDuration,
+    value,
+    animate,
+    animationType,
     variant,
+
     classNames,
     style,
     styles,
     unstyled,
     vars,
     className,
-    value,
-    animate,
-    animationType,
+
     ...others
   } = props;
 

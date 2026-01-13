@@ -1,9 +1,46 @@
 import React from 'react';
 import { Group, Paper, Stack, Text } from '@mantine/core';
-import { Led } from './Led';
+import { Led, type LedProps } from './Led';
 
 export default {
   title: 'Components/Led',
+  args: {
+    size: 'md',
+    radius: 'xl',
+    value: true,
+    variant: 'flat',
+    intensity: 80,
+    animate: false,
+    animationType: 'none',
+    animationDuration: 1.5,
+  },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+    },
+    radius: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+    },
+    color: {
+      control: 'color',
+    },
+    variant: {
+      control: 'select',
+      options: ['flat', '3d'],
+    },
+    intensity: {
+      control: { type: 'range', min: 0, max: 100, step: 10 },
+    },
+    animationType: {
+      control: 'select',
+      options: ['none', 'pulse', 'flash', 'breathe', 'blink', 'glow'],
+    },
+    animationDuration: {
+      control: { type: 'range', min: 0.5, max: 10, step: 0.5 },
+    },
+  },
 };
 
 export function Usage() {
@@ -15,7 +52,7 @@ export function Usage() {
         </Text>
         <Group>
           <Stack align="center">
-            <Led value={true} />
+            <Led />
             <Text size="xs">On</Text>
           </Stack>
           <Stack align="center">
@@ -31,11 +68,11 @@ export function Usage() {
         </Text>
         <Group>
           <Stack align="center">
-            <Led variant="flat" value={true} />
+            <Led variant="flat" />
             <Text size="xs">Flat</Text>
           </Stack>
           <Stack align="center">
-            <Led variant="3d" value={true} />
+            <Led variant="3d" />
             <Text size="xs">3D</Text>
           </Stack>
         </Group>
@@ -47,23 +84,23 @@ export function Usage() {
         </Text>
         <Group align="flex-end">
           <Stack align="center">
-            <Led size="xs" value={true} />
+            <Led size="xs" />
             <Text size="xs">XS</Text>
           </Stack>
           <Stack align="center">
-            <Led size="sm" value={true} />
+            <Led size="sm" />
             <Text size="xs">SM</Text>
           </Stack>
           <Stack align="center">
-            <Led size="md" value={true} />
+            <Led size="md" />
             <Text size="xs">MD</Text>
           </Stack>
           <Stack align="center">
-            <Led size="lg" value={true} />
+            <Led size="lg" />
             <Text size="xs">LG</Text>
           </Stack>
           <Stack align="center">
-            <Led size="xl" value={true} />
+            <Led size="xl" />
             <Text size="xs">XL</Text>
           </Stack>
         </Group>
@@ -76,7 +113,7 @@ export function Usage() {
         <Group>
           {['red', 'green', 'blue', 'yellow', 'orange', 'cyan', 'pink', 'violet'].map((color) => (
             <Stack key={color} align="center">
-              <Led color={color} value={true} variant="3d" size="lg" />
+              <Led color={color} variant="3d" size="lg" />
               <Text size="xs" tt="capitalize">
                 {color}
               </Text>
@@ -92,7 +129,7 @@ export function Usage() {
         <Group>
           {[20, 40, 60, 80, 100].map((intensity) => (
             <Stack key={intensity} align="center">
-              <Led intensity={intensity} value={true} variant="3d" size="lg" />
+              <Led intensity={intensity} variant="3d" size="lg" />
               <Text size="xs">{intensity}%</Text>
             </Stack>
           ))}
@@ -105,23 +142,23 @@ export function Usage() {
         </Text>
         <Group>
           <Stack align="center">
-            <Led animate animationType="pulse" value={true} size="lg" />
+            <Led animate animationType="pulse" size="lg" />
             <Text size="xs">Pulse</Text>
           </Stack>
           <Stack align="center">
-            <Led animate animationType="flash" value={true} size="lg" color="red" />
+            <Led animate animationType="flash" size="lg" color="red" />
             <Text size="xs">Flash</Text>
           </Stack>
           <Stack align="center">
-            <Led animate animationType="breathe" value={true} size="lg" color="blue" />
+            <Led animate animationType="breathe" size="lg" color="blue" />
             <Text size="xs">Breathe</Text>
           </Stack>
           <Stack align="center">
-            <Led animate animationType="blink" value={true} size="lg" color="yellow" />
+            <Led animate animationType="blink" size="lg" color="yellow" />
             <Text size="xs">Blink</Text>
           </Stack>
           <Stack align="center">
-            <Led animate animationType="glow" value={true} size="lg" color="cyan" />
+            <Led animate animationType="glow" size="lg" color="cyan" />
             <Text size="xs">Glow</Text>
           </Stack>
         </Group>
@@ -133,15 +170,15 @@ export function Usage() {
         </Text>
         <Group>
           <Stack align="center">
-            <Led animate animationType="pulse" animationDuration={0.5} value={true} size="lg" />
+            <Led animate animationType="pulse" animationDuration={0.5} size="lg" />
             <Text size="xs">Fast (0.5s)</Text>
           </Stack>
           <Stack align="center">
-            <Led animate animationType="pulse" animationDuration={1.5} value={true} size="lg" />
+            <Led animate animationType="pulse" animationDuration={1.5} size="lg" />
             <Text size="xs">Normal (1.5s)</Text>
           </Stack>
           <Stack align="center">
-            <Led animate animationType="pulse" animationDuration={3} value={true} size="lg" />
+            <Led animate animationType="pulse" animationDuration={3} size="lg" />
             <Text size="xs">Slow (3s)</Text>
           </Stack>
         </Group>
@@ -152,35 +189,15 @@ export function Usage() {
           Combined Effects (3D + Animation + High Intensity)
         </Text>
         <Group>
-          <Led
-            variant="3d"
-            animate
-            animationType="glow"
-            intensity={100}
-            value={true}
-            size="xl"
-            color="green"
-          />
-          <Led
-            variant="3d"
-            animate
-            animationType="pulse"
-            intensity={90}
-            value={true}
-            size="xl"
-            color="red"
-          />
-          <Led
-            variant="3d"
-            animate
-            animationType="breathe"
-            intensity={95}
-            value={true}
-            size="xl"
-            color="blue"
-          />
+          <Led variant="3d" animate animationType="glow" intensity={100} size="xl" color="green" />
+          <Led variant="3d" animate animationType="pulse" intensity={90} size="xl" color="red" />
+          <Led variant="3d" animate animationType="breathe" intensity={95} size="xl" color="blue" />
         </Group>
       </Paper>
     </Stack>
   );
+}
+
+export function WithProps(props: LedProps) {
+  return <Led {...props} />;
 }

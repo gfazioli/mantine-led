@@ -284,6 +284,38 @@ Prettier auto-sorts imports per [`./.prettierrc.mjs`](./.prettierrc.mjs):
 
 Run `npm run prettier:write` before committing.
 
+### CSS Coding Standards
+
+**Naming Conventions**:
+- Use **kebab-case** for all CSS identifiers:
+  - Class names: `.component-name`, `.element-class`
+  - Custom properties: `--variable-name`, `--led-color`
+  - Keyframe names: `@keyframes slide-in`, `@keyframes led-pulse`
+- Never use camelCase or PascalCase in CSS (e.g., `ledPulse` is invalid, use `led-pulse`)
+
+**Property Order**:
+- Avoid using CSS shorthand properties (like `background`) after their longhand equivalents (like `background-color`)
+- This causes the shorthand to override the longhand, leading to lint errors
+- Example of what NOT to do:
+  ```css
+  .element {
+    background-color: red;  /* This gets overridden */
+    background: blue;       /* ERROR: shorthand overrides longhand */
+  }
+  ```
+- Instead, use only shorthand OR only longhand:
+  ```css
+  .element {
+    background: blue;  /* Correct: use shorthand only */
+  }
+  ```
+
+**Validation**:
+- Run `npm run lint` to catch CSS linting errors
+- stylelint enforces:
+  - `declaration-block-no-shorthand-property-overrides`: Prevents shorthand/longhand conflicts
+  - `keyframes-name-pattern`: Enforces kebab-case for animation names
+
 ### Linting
 
 ESLint config extends [`eslint-config-mantine`](./eslint.config.mjs):

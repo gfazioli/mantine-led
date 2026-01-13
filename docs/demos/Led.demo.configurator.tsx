@@ -6,8 +6,7 @@ import { Led } from '@gfazioli/mantine-led';
 
 function Demo() {
   return (
-    <Led
-      {{props}}
+    <Led{{props}}
     />
   );
 }
@@ -17,13 +16,13 @@ export const configurator: MantineDemo = {
   type: 'configurator',
   component: (props) => <Led {...props} />,
   code,
+  centered: true,
   controls: [
-    { type: 'boolean', prop: 'value', initialValue: true, libraryValue: '__' },
     {
       type: 'segmented',
       prop: 'variant',
-      initialValue: '3d',
-      libraryValue: '3d',
+      initialValue: 'flat',
+      libraryValue: 'flat',
       data: [
         { value: 'flat', label: 'Flat' },
         { value: '3d', label: '3D' },
@@ -40,6 +39,12 @@ export const configurator: MantineDemo = {
       prop: 'size',
       initialValue: 'md',
       libraryValue: 'md',
+    },
+    {
+      type: 'size',
+      prop: 'radius',
+      initialValue: 'xl',
+      libraryValue: 'xl',
     },
     {
       type: 'number',
