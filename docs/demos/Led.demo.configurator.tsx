@@ -6,8 +6,7 @@ import { Led } from '@gfazioli/mantine-led';
 
 function Demo() {
   return (
-    <Led{{props}}
-    />
+    <Led{{props}}/>
   );
 }
 `;
@@ -18,6 +17,12 @@ export const configurator: MantineDemo = {
   code,
   centered: true,
   controls: [
+    {
+      type: 'boolean',
+      prop: 'value',
+      initialValue: true,
+      libraryValue: true,
+    },
     {
       type: 'segmented',
       prop: 'variant',
@@ -37,8 +42,8 @@ export const configurator: MantineDemo = {
     {
       type: 'size',
       prop: 'size',
-      initialValue: 'md',
-      libraryValue: 'md',
+      initialValue: 'sm',
+      libraryValue: 'sm',
     },
     {
       type: 'size',
@@ -64,9 +69,10 @@ export const configurator: MantineDemo = {
     {
       type: 'select',
       prop: 'animationType',
-      initialValue: 'pulse',
+      initialValue: 'none',
       libraryValue: 'none',
       data: [
+        { value: 'none', label: 'None' },
         { value: 'pulse', label: 'Pulse' },
         { value: 'flash', label: 'Flash' },
         { value: 'breathe', label: 'Breathe' },

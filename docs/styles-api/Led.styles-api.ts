@@ -18,6 +18,7 @@ export const LedStylesApi: StylesApiData<LedFactory> = {
       '--led-intensity': 'Controls brightness intensity (0-1)',
       '--led-animation-duration': 'Controls animation duration',
       '--led-glow-size': 'Controls outer glow size',
+      '--led-justify-content': 'Controls label and LED alignment',
     },
   },
 

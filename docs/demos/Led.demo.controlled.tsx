@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { Led } from '@gfazioli/mantine-led';
 import { Button, Group, Stack } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { MantineDemo } from '@mantinex/demo';
 
 const code = `
@@ -9,19 +9,19 @@ import { Button, Group, Stack } from '@mantine/core';
 import { Led } from '@gfazioli/mantine-led';
 
 function Demo() {
-  const [active, setActive] = useState(false);
+  const [value, { open, close, toggle }] = useDisclosure(false);
 
   return (
     <Stack align="center">
-      <Led value={active} size="xl" />
+      <Led value={value} size="xl" />
       <Group>
-        <Button onClick={() => setActive(true)} variant="light" color="green">
+        <Button onClick={open} variant="light" color="green">
           Turn On
         </Button>
-        <Button onClick={() => setActive(false)} variant="light" color="red">
+        <Button onClick={close} variant="light" color="red">
           Turn Off
         </Button>
-        <Button onClick={() => setActive((current) => !current)} variant="light">
+        <Button onClick={toggle} variant="light">
           Toggle
         </Button>
       </Group>
@@ -31,19 +31,19 @@ function Demo() {
 `;
 
 function Demo() {
-  const [active, setActive] = useState(false);
+  const [value, { open, close, toggle }] = useDisclosure(false);
 
   return (
     <Stack align="center">
-      <Led value={active} size="xl" />
+      <Led value={value} size="lg" variant="3d" />
       <Group>
-        <Button onClick={() => setActive(true)} variant="light" color="green">
+        <Button onClick={open} variant="light" color="green">
           Turn On
         </Button>
-        <Button onClick={() => setActive(false)} variant="light" color="red">
+        <Button onClick={close} variant="light" color="red">
           Turn Off
         </Button>
-        <Button onClick={() => setActive((current) => !current)} variant="light">
+        <Button onClick={toggle} variant="light">
           Toggle
         </Button>
       </Group>

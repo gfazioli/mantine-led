@@ -15,6 +15,7 @@ import {
   type MantineColor,
   type MantineRadius,
   type MantineSize,
+  type StyleProp,
 } from '@mantine/core';
 import classes from './Led.module.css';
 
@@ -31,7 +32,8 @@ export type LedCssVariables = {
     | '--led-color'
     | '--led-intensity'
     | '--led-animation-duration'
-    | '--led-glow-size';
+    | '--led-glow-size'
+    | '--led-justify-content';
 };
 
 export interface LedBaseProps {
@@ -53,7 +55,7 @@ export interface LedBaseProps {
   /** Enable animation */
   animate?: boolean;
 
-  /** Animation type */
+  /** Animation type; one of 'pulse', 'flash', 'breathe', 'blink', 'glow', or 'none' */
   animationType?: LedAnimationType;
 
   /** Animation duration in seconds */
@@ -64,6 +66,9 @@ export interface LedBaseProps {
 
   /** Label position */
   labelPosition?: 'left' | 'right';
+
+  /** `justify-content` CSS property */
+  justify?: StyleProp<React.CSSProperties['justifyContent']>;
 }
 
 export interface LedProps extends BoxProps, LedBaseProps, StylesApiProps<LedFactory> {}
@@ -91,7 +96,7 @@ const defaultProps: Partial<LedProps> = {
 };
 
 const varsResolver = createVarsResolver<LedFactory>(
-  (theme, { size, radius, color, intensity, animationDuration }) => {
+  (theme, { size, radius, color, intensity, animationDuration, justify }) => {
     return {
       root: {
         '--led-size': getSize(size, 'led-size'),
@@ -101,6 +106,7 @@ const varsResolver = createVarsResolver<LedFactory>(
         '--led-animation-duration':
           animationDuration !== undefined ? `${animationDuration}s` : '1.5s',
         '--led-glow-size': `calc(var(--led-size) * 0.6)`,
+        '--led-justify-content': String(justify) || 'center',
       },
     };
   }
@@ -120,6 +126,7 @@ export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
     variant,
     label,
     labelPosition,
+    justify,
 
     classNames,
     style,

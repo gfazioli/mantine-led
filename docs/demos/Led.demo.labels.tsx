@@ -10,18 +10,17 @@ function Demo() {
   return (
     <Stack gap="lg">
       <Group>
-        <Led value label="Power" />
+        <Led label="Power" />
         <Led value={false} label="Standby" color="gray" />
       </Group>
 
       <Group>
-        <Led value label="Online" labelPosition="left" color="green" />
-        <Led value label="Active" labelPosition="right" color="blue" />
+        <Led label="Online" labelPosition="left" color="green" />
+        <Led label="Active" labelPosition="right" color="blue" />
       </Group>
 
       <Group>
         <Led
-          value
           label={<Badge size="sm" variant="light">Custom Label</Badge>}
           color="violet"
         />
@@ -35,18 +34,17 @@ function Demo() {
   return (
     <Stack gap="lg">
       <Group>
-        <Led value label="Power" />
+        <Led label="Power" />
         <Led value={false} label="Standby" color="gray" />
       </Group>
 
       <Group>
-        <Led value label="Online" labelPosition="left" color="green" />
-        <Led value label="Active" labelPosition="right" color="blue" />
+        <Led label="Online" labelPosition="left" color="green" />
+        <Led label="Active" labelPosition="right" color="blue" />
       </Group>
 
       <Group>
         <Led
-          value
           label={
             <Badge size="sm" variant="light">
               Custom Label

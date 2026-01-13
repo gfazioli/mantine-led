@@ -8,6 +8,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--mantine-spacing-xs);
+  justify-content: var(--led-justify-content, flex-start);
 
   &[data-label-position='left'] {
     --led-label-order: 1;

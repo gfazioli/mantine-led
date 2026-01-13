@@ -9,14 +9,14 @@ import { Led } from '@gfazioli/mantine-led';
 function Demo() {
   return (
     <Group>
-      <Led color="red" value />
-      <Led color="green" value />
-      <Led color="blue" value />
-      <Led color="yellow" value />
-      <Led color="orange" value />
-      <Led color="cyan" value />
-      <Led color="pink" value />
-      <Led color="violet" value />
+      <Led color="red" />
+      <Led color="green" />
+      <Led color="blue" />
+      <Led color="yellow" />
+      <Led color="orange" />
+      <Led color="cyan" />
+      <Led color="pink" />
+      <Led color="violet" />
     </Group>
   );
 }
@@ -26,14 +26,14 @@ export const colors: MantineDemo = {
   type: 'code',
   component: () => (
     <Group>
-      <Led color="red" value />
-      <Led color="green" value />
-      <Led color="blue" value />
-      <Led color="yellow" value />
-      <Led color="orange" value />
-      <Led color="cyan" value />
-      <Led color="pink" value />
-      <Led color="violet" value />
+      <Led color="red" />
+      <Led color="green" />
+      <Led color="blue" />
+      <Led color="yellow" />
+      <Led color="orange" />
+      <Led color="cyan" />
+      <Led color="pink" />
+      <Led color="violet" />
     </Group>
   ),
   code,

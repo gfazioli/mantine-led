@@ -19,7 +19,19 @@
 
 This component is created on top of the [Mantine](https://mantine.dev/) library.
 
-[Mantine Led](https://gfazioli.github.io/mantine-led/) is a two-face container that animates between a front and a back view, ideal for compact UIs that need progressive disclosure (e.g., editing panels, settings, sign-in/sign-up toggles, or profile details). It supports both uncontrolled usage with Led.Target to wire any element as a click trigger, and controlled usage via fedped/defaultLedped using React state for full synchronization with your app logic. The component enforces exactly two children, accepts size constraints (w/h), and offers transition customization such as vertical fedping and distinct rotation directions for led-in and led-out. Styling hooks (classNames/Styles API) let you target inner parts for design refinement, while examples demonstrate practical patterns like credit-card editing, modal-like settings panes, and multi-target triggers within a single face.
+The [Mantine Led](https://gfazioli.github.io/mantine-led/) component is a highly customizable LED indicator for React applications built with Mantine. It provides visual feedback for status indicators, notifications, and interactive elements with support for various colors, sizes, animations, and states.
+
+## Features
+
+- 🎨 **Theme Integration**: Full Mantine theme support with all theme colors
+- 📐 **Flexible Sizing**: Supports all Mantine sizes plus custom values
+- ✨ **Rich Animations**: Multiple animation types (pulse, flash, breathe, blink, glow)
+- 🎭 **Visual Variants**: Flat and 3D rendering styles
+- 🏷️ **Label Support**: Optional labels with configurable positioning
+- 🎛️ **Controlled State**: Full control over the LED on/off state
+- ♿ **Accessibility**: Follows WAI-ARIA best practices
+- 🎨 **Styles API**: Extensive styling customization support
+- 📦 **TypeScript**: Full type safety out of the box
 
 > [!note]
 >
@@ -48,30 +60,9 @@ import '@gfazioli/mantine-led/styles.css';
 import { Led } from '@gfazioli/mantine-led';
 
 function Demo() {
-  return (
-    <Led h={200} w={200}>
-
-        <Paper radius="md" withBorder p="lg" shadow="md">
-          <h3>Front Card</h3>
-          <Led.Target>
-            <Button>Led Back</Button>
-          </Led.Target>
-        </Paper>
-
-        <Paper radius="md" withBorder p="lg" shadow="md">
-          <h3>Back Card</h3>
-          <Led.Target>
-            <Button>Led Front</Button>
-          </Led.Target>
-        </Paper>
-
-    </Led>
-  );
+  return  <Led />;
 }
 ```
-
-As you can see, the `Led` component wraps two children, which are the two views that you want to led between.
-The `Led.Target` component is used to define the trigger for the led animation. It can be any component, such as a button, or a link, or even a div.
 
 ## Sponsor
 

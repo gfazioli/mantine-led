@@ -17,35 +17,17 @@ You can import styles within a layer `@layer mantine-led` by importing `@gfaziol
 import '@gfazioli/mantine-led/styles.layer.css';
 ```
 
-# LED Indicator Component
-
-The `Led` component is a highly customizable LED indicator for React applications built with Mantine. It provides visual feedback for status indicators, notifications, and interactive elements with support for various colors, sizes, animations, and states.
-
-## Features
-
-- 🎨 **Theme Integration**: Full Mantine theme support with all theme colors
-- 📐 **Flexible Sizing**: Supports all Mantine sizes plus custom values
-- ✨ **Rich Animations**: Multiple animation types (pulse, flash, breathe, blink, glow)
-- 🎭 **Visual Variants**: Flat and 3D rendering styles
-- 🏷️ **Label Support**: Optional labels with configurable positioning
-- 🎛️ **Controlled State**: Full control over the LED on/off state
-- ♿ **Accessibility**: Follows WAI-ARIA best practices
-- 🎨 **Styles API**: Extensive styling customization support
-- 📦 **TypeScript**: Full type safety out of the box
-
-å
-
 ## Usage
-
-The simplest way to use the Led component is with the `value` prop to control its state:
-
-<Demo data={demos.basic} />
-
-## Interactive Configurator
 
 Explore all available props and see the component in action:
 
 <Demo data={demos.configurator} />
+
+## Controlled
+
+The Led component is fully controlled through the `value` prop. Here's an example of controlling the LED state:
+
+<Demo data={demos.controlled} />
 
 ## Colors
 
@@ -65,12 +47,6 @@ Add visual feedback with built-in animations. The component supports multiple an
 
 <Demo data={demos.animations} />
 
-## Controlled Component
-
-The Led component is fully controlled through the `value` prop. Here's an example of controlling the LED state:
-
-<Demo data={demos.controlled} />
-
 ## Labels
 
 Add descriptive labels to your LED indicators with full customization support:
@@ -78,6 +54,14 @@ Add descriptive labels to your LED indicators with full customization support:
 <Demo data={demos.labels} />
 
 The `label` prop accepts any React node, allowing you to use custom components like badges, icons, or formatted text. Use `labelPosition` to control whether the label appears on the left or right side of the LED.
+
+## Styles API
+
+`Led` supports [Styles API](https://mantine.dev/styles/styles-api/), you can add styles to any inner element of the component with `classNames` prop. Follow [Styles API](https://mantine.dev/styles/styles-api/) documentation to learn more.
+
+You can customize the appearance of the `Led` component using the Styles API. This allows you to modify styles for various parts of the component, such as the root, led, and label.
+
+<Demo data={demos.stylesApi} />
 
 ## Use Cases
 
