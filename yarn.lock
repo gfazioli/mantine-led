@@ -6060,13 +6060,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:^1.11.19":
-  version: 1.11.19
-  resolution: "dayjs@npm:1.11.19"
-  checksum: 10c0/7d8a6074a343f821f81ea284d700bd34ea6c7abbe8d93bce7aba818948957c1b7f56131702e5e890a5622cdfc05dcebe8aed0b8313bdc6838a594d7846b0b000
-  languageName: node
-  linkType: hard
-
 "debug@npm:4, debug@npm:^4.0.0, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.2, debug@npm:^4.3.4":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
@@ -7651,7 +7644,6 @@ __metadata:
     "@types/node": "npm:^22.19.7"
     "@types/react": "npm:^19.2.9"
     "@types/react-dom": "npm:^19.2.3"
-    dayjs: "npm:^1.11.19"
     next: "npm:15.5.9"
     react: "npm:19.2.3"
     react-dom: "npm:19.2.3"
