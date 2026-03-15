@@ -250,7 +250,9 @@ export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
       ref={ref}
       role={isInteractive ? 'switch' : 'status'}
       aria-checked={isInteractive ? value : undefined}
-      aria-label={typeof label === 'string' ? label : undefined}
+      aria-label={
+        typeof label === 'string' ? label : typeof tooltip === 'string' ? tooltip : undefined
+      }
       aria-description={description}
       tabIndex={isInteractive ? 0 : undefined}
       onClick={handleClick}
