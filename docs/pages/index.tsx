@@ -12,8 +12,8 @@ export default function HomePage() {
       <PageHeader data={PACKAGE_DATA} />
       <DocsTabs
         docgen={docgen}
-        componentsProps={['Led']}
-        componentsStyles={['Led']}
+        componentsProps={['Led', 'LedGroup', 'LedMatrix', 'LedSevenSegment']}
+        componentsStyles={['Led', 'LedGroup', 'LedMatrix', 'LedSevenSegment']}
         componentPrefix="Led"
         stylesApiData={STYLES_API_DATA}
       >

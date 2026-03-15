@@ -53,7 +53,9 @@
     border-radius: 0;
   }
 
-  /* Flat variant - simple LED */
+  /* ==========================================
+     VARIANT: flat
+     ========================================== */
   &[data-variant='flat'] {
     background-color: var(--led-off-color, color-mix(in srgb, var(--led-color) 30%, #000 70%));
 
@@ -66,39 +68,95 @@
     }
   }
 
-  /* 3D variant - realistic LED with depth */
+  /* ==========================================
+     VARIANT: 3d (improved)
+     ========================================== */
   &[data-variant='3d'] {
     background: radial-gradient(
       circle at 30% 30%,
       color-mix(in srgb, var(--led-off-color, var(--led-color)) 40%, #000 60%),
-      color-mix(in srgb, var(--led-off-color, var(--led-color)) 10%, #000 90%)
+      color-mix(in srgb, var(--led-off-color, var(--led-color)) 15%, #000 85%) 70%,
+      color-mix(in srgb, var(--led-off-color, var(--led-color)) 5%, #000 95%)
     );
     box-shadow:
+      /* Inner depth */
       inset 0 2px 4px rgba(0, 0, 0, 0.6),
       inset 0 -1px 2px rgba(0, 0, 0, 0.4),
-      0 1px 2px rgba(0, 0, 0, 0.3);
+      /* Housing bezel */ 0 1px 3px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(0, 0, 0, 0.15);
 
     &[data-value] {
       background: radial-gradient(
         circle at 35% 35%,
-        color-mix(in srgb, var(--led-color) 100%, #fff 20%),
-        var(--led-color) 50%,
-        color-mix(in srgb, var(--led-color) 70%, #000 30%)
+        color-mix(in srgb, var(--led-color) 100%, #fff 30%) 0%,
+        var(--led-color) 40%,
+        color-mix(in srgb, var(--led-color) 80%, #000 20%) 70%,
+        color-mix(in srgb, var(--led-color) 60%, #000 40%)
       );
       opacity: 1;
       box-shadow:
-        /* Outer glow */
+        /* Multi-layer outer glow */
         0 0 var(--led-glow-size)
           color-mix(in srgb, var(--led-color) calc(var(--led-intensity) * 100%), transparent),
         0 0 calc(var(--led-glow-size) * 0.5)
           color-mix(in srgb, var(--led-color) calc(var(--led-intensity) * 80%), transparent),
-        /* Inner shadow for depth */ inset 0 1px 3px rgba(255, 255, 255, 0.5),
+        0 0 calc(var(--led-glow-size) * 1.5)
+          color-mix(in srgb, var(--led-color) calc(var(--led-intensity) * 30%), transparent),
+        /* Inner highlights */ inset 0 1px 3px rgba(255, 255, 255, 0.5),
         inset 0 -2px 4px rgba(0, 0, 0, 0.3),
-        /* Outer shadow */ 0 2px 4px rgba(0, 0, 0, 0.2);
+        /* Housing shadow + rim */ 0 2px 4px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(0, 0, 0, 0.1);
     }
   }
 
-  /* Animations */
+  /* ==========================================
+     VARIANT: neon
+     ========================================== */
+  &[data-variant='neon'] {
+    background: transparent;
+    border: calc(var(--led-size) * 0.08) solid
+      color-mix(in srgb, var(--led-off-color, var(--led-color)) 20%, #333 80%);
+    opacity: 0.5;
+    box-shadow: none;
+
+    &[data-value] {
+      border-color: var(--led-color);
+      opacity: 1;
+      background: color-mix(in srgb, var(--led-color) 10%, transparent);
+      box-shadow:
+        /* Inner glow */
+        inset 0 0 calc(var(--led-glow-size) * 0.5)
+          color-mix(in srgb, var(--led-color) 30%, transparent),
+        /* Outer glow layers */ 0 0 calc(var(--led-glow-size) * 0.3) var(--led-color),
+        0 0 var(--led-glow-size) color-mix(in srgb, var(--led-color) 60%, transparent),
+        0 0 calc(var(--led-glow-size) * 2) color-mix(in srgb, var(--led-color) 30%, transparent);
+    }
+  }
+
+  /* ==========================================
+     VARIANT: dot
+     ========================================== */
+  &[data-variant='dot'] {
+    background-color: var(--led-off-color, color-mix(in srgb, var(--led-color) 15%, #ddd 85%));
+    opacity: 0.6;
+    box-shadow: none;
+
+    &[data-value] {
+      background-color: var(--led-color);
+      opacity: var(--led-intensity);
+    }
+  }
+
+  /* ==========================================
+     Gradient override (all variants, on-state)
+     ========================================== */
+  &[data-gradient][data-value] {
+    background: var(--led-gradient);
+  }
+
+  /* ==========================================
+     ANIMATIONS
+     ========================================== */
   &[data-animate='pulse'] {
     animation: led-pulse var(--led-animation-duration) ease-in-out infinite;
   }
@@ -119,9 +177,10 @@
     animation: led-glow var(--led-animation-duration) ease-in-out infinite;
   }
 
-  /* Override iteration count when animationCount is set */
+  /* Override iteration count and delay when set */
   &[data-animate] {
     animation-iteration-count: var(--led-animation-count, infinite);
+    animation-delay: var(--led-animation-delay, 0s);
   }
 }
 
@@ -153,26 +212,32 @@
     );
     filter: blur(calc(var(--led-size) * 0.3));
   }
+
+  /* Disable glow for dot variant */
+  [data-variant='dot'] & {
+    display: none;
+  }
 }
 
 .light {
+  /* Improved specular highlight for 3D variant */
   [data-variant='3d'][data-value] & {
     position: absolute;
-    width: calc(var(--led-size) * 0.25);
-    height: calc(var(--led-size) * 0.25);
+    width: calc(var(--led-size) * 0.35);
+    height: calc(var(--led-size) * 0.2);
     border-radius: 50%;
-    top: 20%;
-    left: 25%;
+    top: 15%;
+    left: 18%;
     pointer-events: none;
 
     background: radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(255, 255, 255, 0.4) 60%,
+      ellipse,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.5) 40%,
+      rgba(255, 255, 255, 0.1) 70%,
       transparent 100%
     );
-    filter: blur(1px);
-    box-shadow: 0 0 calc(var(--led-size) * 0.1) rgba(255, 255, 255, 0.8);
+    filter: blur(0.5px);
   }
 }
 

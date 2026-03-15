@@ -13,7 +13,14 @@ function Demo() {
 
 export const configurator: MantineDemo = {
   type: 'configurator',
-  component: (props) => <Led {...props} />,
+  component: ({ animationCount, animationDelay, tooltip, ...props }: any) => (
+    <Led
+      {...props}
+      animationCount={animationCount > 0 ? animationCount : undefined}
+      animationDelay={animationDelay > 0 ? animationDelay : undefined}
+      tooltip={tooltip || undefined}
+    />
+  ),
   code,
   centered: true,
   controls: [
@@ -31,6 +38,19 @@ export const configurator: MantineDemo = {
       data: [
         { value: 'flat', label: 'Flat' },
         { value: '3d', label: '3D' },
+        { value: 'neon', label: 'Neon' },
+        { value: 'dot', label: 'Dot' },
+      ],
+    },
+    {
+      type: 'segmented',
+      prop: 'shape',
+      initialValue: 'circle',
+      libraryValue: 'circle',
+      data: [
+        { value: 'circle', label: 'Circle' },
+        { value: 'square', label: 'Square' },
+        { value: 'rectangle', label: 'Rectangle' },
       ],
     },
     {
@@ -38,6 +58,12 @@ export const configurator: MantineDemo = {
       prop: 'color',
       initialValue: 'green',
       libraryValue: 'green',
+    },
+    {
+      type: 'color',
+      prop: 'offColor',
+      initialValue: '',
+      libraryValue: '',
     },
     {
       type: 'size',
@@ -88,6 +114,30 @@ export const configurator: MantineDemo = {
       min: 0.5,
       max: 5,
       step: 0.5,
+    },
+    {
+      type: 'number',
+      prop: 'animationCount',
+      initialValue: 0,
+      libraryValue: 0,
+      min: 0,
+      max: 20,
+      step: 1,
+    },
+    {
+      type: 'number',
+      prop: 'animationDelay',
+      initialValue: 0,
+      libraryValue: 0,
+      min: 0,
+      max: 3,
+      step: 0.1,
+    },
+    {
+      type: 'string',
+      prop: 'tooltip',
+      initialValue: '',
+      libraryValue: '',
     },
     {
       type: 'string',

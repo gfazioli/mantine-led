@@ -29,6 +29,12 @@ The Led component is fully controlled through the `value` prop. Here's an exampl
 
 <Demo data={demos.controlled} />
 
+## Variants
+
+The Led component supports four visual variants: `flat` (default), `3d` (realistic with depth and specular highlight), `neon` (glowing neon sign style), and `dot` (ultra-minimal):
+
+<Demo data={demos.variants} />
+
 ## Colors
 
 The Led component supports all Mantine theme colors. Use the `color` prop to set the LED color:
@@ -41,6 +47,12 @@ Use the `offColor` prop to customize the LED appearance when turned off. By defa
 
 <Demo data={demos.offColor} />
 
+## Gradient
+
+Use the `gradient` prop to apply a linear gradient to the LED when on. Accepts a `MantineGradient` object with `from`, `to`, and optional `deg` properties:
+
+<Demo data={demos.gradient} />
+
 ## Shapes
 
 The `shape` prop controls the LED form factor. Available shapes are `circle` (default), `square`, and `rectangle`:
@@ -51,7 +63,7 @@ The `shape` prop controls the LED form factor. Available shapes are `circle` (de
 
 Add visual feedback with built-in animations. The component supports multiple animation types:
 
-- **pulse**: Smooth pulsing effect (default)
+- **pulse**: Smooth pulsing effect
 - **flash**: Quick flashing
 - **breathe**: Slow breathing effect
 - **blink**: Regular blinking
@@ -73,7 +85,7 @@ Provide an `onChange` callback to make the LED clickable and toggleable. The LED
 
 ## Tooltip
 
-Use the `tooltip` prop to display a tooltip on hover. This is useful for compact dashboards where LEDs are small and need contextual information:
+Use the `tooltip` prop to display a tooltip on hover. This is useful for compact dashboards where LEDs are small and need contextual information. Use `tooltipProps` to customize the underlying Mantine [Tooltip](https://mantine.dev/core/tooltip/) component — you can control `position`, `withArrow`, `color`, `multiline`, and any other Tooltip prop:
 
 <Demo data={demos.tooltip} />
 
@@ -91,11 +103,39 @@ Use `Led.Group` to render multiple LEDs with shared props. Pass `value` as a num
 
 <Demo data={demos.group} />
 
+### Color Scale
+
+Use `colorScale` to map different colors progressively across LEDs — perfect for VU meters and level indicators:
+
+<Demo data={demos.vuMeter} />
+
+### Cascade Animation
+
+Use `animationDelay` on `Led.Group` to create staggered cascade effects. Each LED starts its animation with a progressive delay:
+
+<Demo data={demos.cascade} />
+
+## Led.Matrix
+
+Use `Led.Matrix` to render a 2D grid of LEDs. Pass a `boolean[][]` array to control individual LED states:
+
+<Demo data={demos.matrix} />
+
+## Led.SevenSegment
+
+Use `Led.SevenSegment` to display numbers and characters using a classic seven-segment display. Supports digits 0-9, hex characters A-F, and special characters like `:`, `.`, `-`:
+
+<Demo data={demos.sevenSegment} />
+
+### Live Clock
+
+A real-time clock using `Led.SevenSegment` with hours, minutes, and seconds:
+
+<Demo data={demos.clock} />
+
 ## Styles API
 
 `Led` supports [Styles API](https://mantine.dev/styles/styles-api/), you can add styles to any inner element of the component with `classNames` prop. Follow [Styles API](https://mantine.dev/styles/styles-api/) documentation to learn more.
-
-You can customize the appearance of the `Led` component using the Styles API. This allows you to modify styles for various parts of the component, such as the root, led, and label.
 
 <Demo data={demos.stylesApi} />
 
@@ -105,6 +145,7 @@ The Led component follows WAI-ARIA best practices:
 
 - Non-interactive LEDs use `role="status"` with optional `aria-label` from string labels
 - Interactive LEDs (with `onChange`) use `role="switch"` with `aria-checked` and keyboard support (Enter, Space)
+- Use the `description` prop to add `aria-description` for screen readers
 - Animations are automatically disabled when the user has `prefers-reduced-motion: reduce` enabled
 
 ## Use Cases

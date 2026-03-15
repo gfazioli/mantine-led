@@ -1,12 +1,20 @@
 import { Led } from './Led';
 import { LedGroup } from './LedGroup';
+import { LedMatrix } from './LedMatrix';
+import { LedSevenSegment } from './LedSevenSegment';
 
-// Attach compound component
+// Attach compound components
 (Led as any).Group = LedGroup;
+(Led as any).Matrix = LedMatrix;
+(Led as any).SevenSegment = LedSevenSegment;
 
-const LedWithGroup = Led as typeof Led & { Group: typeof LedGroup };
+const LedWithCompounds = Led as typeof Led & {
+  Group: typeof LedGroup;
+  Matrix: typeof LedMatrix;
+  SevenSegment: typeof LedSevenSegment;
+};
 
-export { LedWithGroup as Led, LedGroup };
+export { LedWithCompounds as Led, LedGroup, LedMatrix, LedSevenSegment };
 export type {
   LedAnimationType,
   LedBaseProps,
@@ -23,3 +31,15 @@ export type {
   LedGroupProps,
   LedGroupStylesNames,
 } from './LedGroup';
+export type {
+  LedMatrixCssVariables,
+  LedMatrixFactory,
+  LedMatrixProps,
+  LedMatrixStylesNames,
+} from './LedMatrix';
+export type {
+  LedSevenSegmentCssVariables,
+  LedSevenSegmentFactory,
+  LedSevenSegmentProps,
+  LedSevenSegmentStylesNames,
+} from './LedSevenSegment';
