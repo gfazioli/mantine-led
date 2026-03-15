@@ -35,6 +35,18 @@ The Led component supports all Mantine theme colors. Use the `color` prop to set
 
 <Demo data={demos.colors} />
 
+## Off Color
+
+Use the `offColor` prop to customize the LED appearance when turned off. By default, the off state uses a dimmed version of the main color.
+
+<Demo data={demos.offColor} />
+
+## Shapes
+
+The `shape` prop controls the LED form factor. Available shapes are `circle` (default), `square`, and `rectangle`:
+
+<Demo data={demos.shape} />
+
 ## Animations
 
 Add visual feedback with built-in animations. The component supports multiple animation types:
@@ -47,6 +59,24 @@ Add visual feedback with built-in animations. The component supports multiple an
 
 <Demo data={demos.animations} />
 
+## Animation Count
+
+Use the `animationCount` prop to limit the number of animation iterations. By default, animations loop infinitely. When a count is set, the animation stops after the specified number of cycles:
+
+<Demo data={demos.animationCount} />
+
+## Interactive
+
+Provide an `onChange` callback to make the LED clickable and toggleable. The LED becomes keyboard-accessible with `role="switch"` and responds to click, Enter, and Space:
+
+<Demo data={demos.onChange} />
+
+## Tooltip
+
+Use the `tooltip` prop to display a tooltip on hover. This is useful for compact dashboards where LEDs are small and need contextual information:
+
+<Demo data={demos.tooltip} />
+
 ## Labels
 
 Add descriptive labels to your LED indicators with full customization support:
@@ -55,6 +85,12 @@ Add descriptive labels to your LED indicators with full customization support:
 
 The `label` prop accepts any React node, allowing you to use custom components like badges, icons, or formatted text. Use `labelPosition` to control whether the label appears on the left or right side of the LED.
 
+## Led.Group
+
+Use `Led.Group` to render multiple LEDs with shared props. Pass `value` as a number to activate the first N LEDs, or as a boolean array for individual control:
+
+<Demo data={demos.group} />
+
 ## Styles API
 
 `Led` supports [Styles API](https://mantine.dev/styles/styles-api/), you can add styles to any inner element of the component with `classNames` prop. Follow [Styles API](https://mantine.dev/styles/styles-api/) documentation to learn more.
@@ -62,6 +98,14 @@ The `label` prop accepts any React node, allowing you to use custom components l
 You can customize the appearance of the `Led` component using the Styles API. This allows you to modify styles for various parts of the component, such as the root, led, and label.
 
 <Demo data={demos.stylesApi} />
+
+## Accessibility
+
+The Led component follows WAI-ARIA best practices:
+
+- Non-interactive LEDs use `role="status"` with optional `aria-label` from string labels
+- Interactive LEDs (with `onChange`) use `role="switch"` with `aria-checked` and keyboard support (Enter, Space)
+- Animations are automatically disabled when the user has `prefers-reduced-motion: reduce` enabled
 
 ## Use Cases
 

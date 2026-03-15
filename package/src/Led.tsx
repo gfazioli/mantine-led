@@ -10,6 +10,7 @@ import {
   PolymorphicFactory,
   polymorphicFactory,
   StylesApiProps,
+  Tooltip,
   useProps,
   useStyles,
   type MantineColor,
@@ -23,6 +24,8 @@ export type LedVariant = 'flat' | '3d';
 
 export type LedAnimationType = 'pulse' | 'flash' | 'breathe' | 'blink' | 'glow' | 'none';
 
+export type LedShape = 'circle' | 'square' | 'rectangle';
+
 export type LedStylesNames = 'root' | 'led' | 'label' | 'light' | 'glow';
 
 export type LedCssVariables = {
@@ -30,8 +33,10 @@ export type LedCssVariables = {
     | '--led-size'
     | '--led-radius'
     | '--led-color'
+    | '--led-off-color'
     | '--led-intensity'
     | '--led-animation-duration'
+    | '--led-animation-count'
     | '--led-glow-size'
     | '--led-justify-content';
 };
@@ -61,6 +66,9 @@ export interface LedBaseProps {
   /** Animation duration in seconds */
   animationDuration?: number;
 
+  /** Number of animation iterations before stopping, defaults to infinite */
+  animationCount?: number;
+
   /** Label content */
   label?: React.ReactNode;
 
@@ -69,6 +77,18 @@ export interface LedBaseProps {
 
   /** `justify-content` CSS property */
   justify?: StyleProp<React.CSSProperties['justifyContent']>;
+
+  /** Color when LED is off */
+  offColor?: MantineColor;
+
+  /** Called when LED is clicked, makes LED interactive */
+  onChange?: (value: boolean) => void;
+
+  /** Tooltip content */
+  tooltip?: React.ReactNode;
+
+  /** LED shape */
+  shape?: LedShape;
 }
 
 export interface LedProps extends BoxProps, LedBaseProps, StylesApiProps<LedFactory> {}
@@ -93,20 +113,27 @@ const defaultProps: Partial<LedProps> = {
   animationType: 'none',
   animationDuration: 1.5,
   labelPosition: 'right',
+  shape: 'circle',
 };
 
 const varsResolver = createVarsResolver<LedFactory>(
-  (theme, { size, radius, color, intensity, animationDuration, justify }) => {
+  (
+    theme,
+    { size, radius, color, offColor, intensity, animationDuration, animationCount, justify }
+  ) => {
     return {
       root: {
         '--led-size': getSize(size, 'led-size'),
         '--led-radius': radius === undefined ? undefined : getRadius(radius),
         '--led-color': getThemeColor(color, theme),
-        '--led-intensity': intensity !== undefined ? `${intensity / 100}` : '0.8',
+        '--led-off-color': offColor ? getThemeColor(offColor, theme) : undefined,
+        '--led-intensity':
+          intensity !== undefined ? `${Math.min(100, Math.max(0, intensity)) / 100}` : '0.8',
         '--led-animation-duration':
           animationDuration !== undefined ? `${animationDuration}s` : '1.5s',
+        '--led-animation-count': animationCount !== undefined ? String(animationCount) : undefined,
         '--led-glow-size': `calc(var(--led-size) * 0.6)`,
-        '--led-justify-content': String(justify) || 'center',
+        '--led-justify-content': justify != null ? String(justify) : 'center',
       },
     };
   }
@@ -118,8 +145,10 @@ export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
     size,
     radius,
     color,
+    offColor,
     intensity,
     animationDuration,
+    animationCount,
     value,
     animate,
     animationType,
@@ -127,6 +156,9 @@ export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
     label,
     labelPosition,
     justify,
+    onChange,
+    tooltip,
+    shape,
 
     classNames,
     style,
@@ -151,12 +183,30 @@ export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
     varsResolver,
   });
 
-  return (
+  const isInteractive = !!onChange;
+
+  const handleClick = isInteractive ? () => onChange(!value) : undefined;
+  const handleKeyDown = isInteractive
+    ? (event: React.KeyboardEvent) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          onChange(!value);
+        }
+      }
+    : undefined;
+
+  const content = (
     <Box
       ref={ref}
+      role={isInteractive ? 'switch' : 'status'}
+      aria-checked={isInteractive ? value : undefined}
+      aria-label={typeof label === 'string' ? label : undefined}
+      tabIndex={isInteractive ? 0 : undefined}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
       {...getStyles('root')}
       {...others}
-      mod={[{ 'label-position': labelPosition }, mod]}
+      mod={[{ 'label-position': labelPosition, interactive: isInteractive }, mod]}
       __vars={{
         '--label-fz': getFontSize(size),
         '--label-lh': getSize(size, 'label-lh'),
@@ -165,15 +215,22 @@ export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
       <Box
         {...getStyles('led')}
         variant={variant}
-        data-value={value || undefined}
-        data-animate={animate && value ? animationType : undefined}
+        data-value={value ? true : undefined}
+        data-animate={animate && value && animationType !== 'none' ? animationType : undefined}
+        data-shape={shape}
       >
         <Box {...getStyles('glow')} />
         <Box {...getStyles('light')} />
       </Box>
-      {label && <Box {...getStyles('label')}>{label}</Box>}
+      {label != null && <Box {...getStyles('label')}>{label}</Box>}
     </Box>
   );
+
+  if (tooltip) {
+    return <Tooltip label={tooltip}>{content}</Tooltip>;
+  }
+
+  return content;
 });
 
 Led.classes = classes;

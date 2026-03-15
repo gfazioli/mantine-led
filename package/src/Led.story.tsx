@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Divider, Group, Paper, Stack, Text } from '@mantine/core';
 import { Led, type LedProps } from './Led';
+import { LedGroup } from './LedGroup';
 
 export default {
   title: 'Components/Led',
@@ -13,6 +14,7 @@ export default {
     animate: false,
     animationType: 'none',
     animationDuration: 1.5,
+    shape: 'circle',
   },
   argTypes: {
     label: {
@@ -44,6 +46,9 @@ export default {
     color: {
       control: 'color',
     },
+    offColor: {
+      control: 'color',
+    },
     variant: {
       control: 'select',
       options: ['flat', '3d'],
@@ -57,6 +62,16 @@ export default {
     },
     animationDuration: {
       control: { type: 'range', min: 0.5, max: 10, step: 0.5 },
+    },
+    animationCount: {
+      control: { type: 'number', min: 1, max: 20 },
+    },
+    shape: {
+      control: 'select',
+      options: ['circle', 'square', 'rectangle'],
+    },
+    tooltip: {
+      control: 'text',
     },
   },
 };
@@ -244,5 +259,124 @@ export function WithLabel() {
         <Led label="Right Label" labelPosition="right" color="pink" />
       </Stack>
     </>
+  );
+}
+
+export function Shapes() {
+  return (
+    <Group p="md">
+      <Stack align="center">
+        <Led shape="circle" size="lg" variant="3d" />
+        <Text size="xs">Circle</Text>
+      </Stack>
+      <Stack align="center">
+        <Led shape="square" size="lg" variant="3d" />
+        <Text size="xs">Square</Text>
+      </Stack>
+      <Stack align="center">
+        <Led shape="rectangle" size="lg" variant="3d" />
+        <Text size="xs">Rectangle</Text>
+      </Stack>
+    </Group>
+  );
+}
+
+export function OffColor() {
+  return (
+    <Group p="md">
+      <Stack align="center">
+        <Led value={false} offColor="red" color="green" size="xl" variant="3d" />
+        <Text size="xs">Off (red)</Text>
+      </Stack>
+      <Stack align="center">
+        <Led value offColor="red" color="green" size="xl" variant="3d" />
+        <Text size="xs">On (green)</Text>
+      </Stack>
+    </Group>
+  );
+}
+
+export function Interactive() {
+  const [value, setValue] = useState(true);
+
+  return (
+    <Stack align="center" p="md">
+      <Text size="sm">Click the LED to toggle</Text>
+      <Led value={value} onChange={setValue} size="xl" variant="3d" label="Toggle me" />
+    </Stack>
+  );
+}
+
+export function WithTooltip() {
+  return (
+    <Group p="md">
+      <Led tooltip="Server is online" color="green" size="lg" />
+      <Led tooltip="Database connected" color="blue" size="lg" variant="3d" />
+      <Led tooltip="Service unavailable" value={false} color="red" size="lg" />
+    </Group>
+  );
+}
+
+export function AnimationCount() {
+  return (
+    <Group p="md">
+      <Stack align="center">
+        <Led animate animationType="flash" animationCount={3} size="lg" color="red" />
+        <Text size="xs">3 flashes</Text>
+      </Stack>
+      <Stack align="center">
+        <Led animate animationType="pulse" animationCount={5} size="lg" color="blue" />
+        <Text size="xs">5 pulses</Text>
+      </Stack>
+      <Stack align="center">
+        <Led animate animationType="glow" size="lg" color="green" />
+        <Text size="xs">Infinite</Text>
+      </Stack>
+    </Group>
+  );
+}
+
+export function LedGroupStory() {
+  const [level, setLevel] = useState(3);
+
+  return (
+    <Stack p="md" gap="xl">
+      <Paper p="md" withBorder>
+        <Text fw={500} mb="md">
+          Numeric value (first N active)
+        </Text>
+        <LedGroup value={3} count={5} color="green" size="md" variant="3d" />
+      </Paper>
+
+      <Paper p="md" withBorder>
+        <Text fw={500} mb="md">
+          Boolean array
+        </Text>
+        <LedGroup value={[true, false, true, true, false]} color="red" size="md" />
+      </Paper>
+
+      <Paper p="md" withBorder>
+        <Text fw={500} mb="md">
+          Rectangle shape
+        </Text>
+        <LedGroup value={level} count={5} color="cyan" size="sm" shape="rectangle" />
+        <div style={{ marginTop: 16 }}>
+          <input
+            type="range"
+            min={0}
+            max={5}
+            value={level}
+            onChange={(e) => setLevel(Number(e.target.value))}
+          />
+        </div>
+      </Paper>
+
+      <Paper p="md" withBorder>
+        <Text fw={500} mb="md">
+          Vertical direction
+        </Text>
+        <LedGroup value={2} count={4} direction="column" color="orange" size="md" variant="3d" />
+      </Paper>
+    </Stack>
   );
 }

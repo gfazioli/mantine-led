@@ -13,7 +13,7 @@ function Demo() {
 
   return (
     <Stack align="center">
-      <Led value={value} size="xl" />
+      <Led value={value} size="lg" variant="3d" />
       <Group>
         <Button onClick={open} variant="light" color="green">
           Turn On

@@ -3,8 +3,7 @@ import { MantineDemo } from '@mantinex/demo';
 import { LedStylesApi } from '../styles-api/Led.styles-api';
 
 const code = `
-import { Led } from "@gfazioli/mantine-json-tree";
-import { data } from './data';
+import { Led } from "@gfazioli/mantine-led";
 
 function Demo() {
   return (
