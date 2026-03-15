@@ -10,6 +10,7 @@ import {
   useProps,
   useStyles,
   type MantineColor,
+  type MantineGradient,
   type MantineRadius,
   type MantineSize,
   type MantineSpacing,
@@ -39,6 +40,9 @@ export interface LedGroupProps extends BoxProps, StylesApiProps<LedGroupFactory>
   /** LED color from theme */
   color?: MantineColor;
 
+  /** Color scale array — maps colors progressively across LEDs (overrides color) */
+  colorScale?: MantineColor[];
+
   /** Color when LED is off */
   offColor?: MantineColor;
 
@@ -66,8 +70,14 @@ export interface LedGroupProps extends BoxProps, StylesApiProps<LedGroupFactory>
   /** Number of animation iterations */
   animationCount?: number;
 
+  /** Base animation delay in seconds — each LED gets delay * index for cascade effect */
+  animationDelay?: number;
+
   /** LED shape */
   shape?: LedShape;
+
+  /** Gradient for multicolor LED */
+  gradient?: MantineGradient;
 }
 
 export type LedGroupFactory = Factory<{
@@ -90,6 +100,15 @@ const varsResolver = createVarsResolver<LedGroupFactory>((_, { gap, direction })
   },
 }));
 
+function getScaleColor(index: number, total: number, scale: MantineColor[]): MantineColor {
+  if (total <= 1) {
+    return scale[0];
+  }
+  const position = index / (total - 1);
+  const scaleIndex = Math.min(Math.floor(position * scale.length), scale.length - 1);
+  return scale[scaleIndex];
+}
+
 export const LedGroup = factory<LedGroupFactory>((_props, ref) => {
   const props = useProps('LedGroup', defaultProps, _props);
   const {
@@ -98,6 +117,7 @@ export const LedGroup = factory<LedGroupFactory>((_props, ref) => {
     gap,
     direction,
     color,
+    colorScale,
     offColor,
     size,
     radius,
@@ -107,7 +127,9 @@ export const LedGroup = factory<LedGroupFactory>((_props, ref) => {
     animationType,
     animationDuration,
     animationCount,
+    animationDelay,
     shape,
+    gradient,
 
     classNames,
     style,
@@ -135,12 +157,14 @@ export const LedGroup = factory<LedGroupFactory>((_props, ref) => {
 
   const leds = Array.from({ length: ledCount }, (_, i) => {
     const isOn = Array.isArray(value) ? value[i] : typeof value === 'number' ? i < value : true;
+    const ledColor = colorScale ? getScaleColor(i, ledCount, colorScale) : color;
+    const ledDelay = animationDelay !== undefined ? animationDelay * i : undefined;
 
     return (
       <Led
         key={i}
         value={isOn}
-        color={color}
+        color={ledColor}
         offColor={offColor}
         size={size}
         radius={radius}
@@ -150,7 +174,9 @@ export const LedGroup = factory<LedGroupFactory>((_props, ref) => {
         animationType={animationType}
         animationDuration={animationDuration}
         animationCount={animationCount}
+        animationDelay={ledDelay}
         shape={shape}
+        gradient={gradient}
       />
     );
   });

@@ -14,13 +14,15 @@ import {
   useProps,
   useStyles,
   type MantineColor,
+  type MantineGradient,
   type MantineRadius,
   type MantineSize,
   type StyleProp,
+  type TooltipProps,
 } from '@mantine/core';
 import classes from './Led.module.css';
 
-export type LedVariant = 'flat' | '3d';
+export type LedVariant = 'flat' | '3d' | 'neon' | 'dot';
 
 export type LedAnimationType = 'pulse' | 'flash' | 'breathe' | 'blink' | 'glow' | 'none';
 
@@ -37,8 +39,10 @@ export type LedCssVariables = {
     | '--led-intensity'
     | '--led-animation-duration'
     | '--led-animation-count'
+    | '--led-animation-delay'
     | '--led-glow-size'
-    | '--led-justify-content';
+    | '--led-justify-content'
+    | '--led-gradient';
 };
 
 export interface LedBaseProps {
@@ -69,6 +73,12 @@ export interface LedBaseProps {
   /** Number of animation iterations before stopping, defaults to infinite */
   animationCount?: number;
 
+  /** Delay in seconds before animation starts */
+  animationDelay?: number;
+
+  /** Called when animation completes (only fires with finite animationCount) */
+  onAnimationEnd?: () => void;
+
   /** Label content */
   label?: React.ReactNode;
 
@@ -87,8 +97,17 @@ export interface LedBaseProps {
   /** Tooltip content */
   tooltip?: React.ReactNode;
 
+  /** Props passed to the Tooltip component */
+  tooltipProps?: Omit<TooltipProps, 'children' | 'label'>;
+
   /** LED shape */
   shape?: LedShape;
+
+  /** Gradient for multicolor LED (applied when on) */
+  gradient?: MantineGradient;
+
+  /** Additional description for screen readers */
+  description?: string;
 }
 
 export interface LedProps extends BoxProps, LedBaseProps, StylesApiProps<LedFactory> {}
@@ -116,10 +135,34 @@ const defaultProps: Partial<LedProps> = {
   shape: 'circle',
 };
 
+function resolveGradient(
+  gradient: MantineGradient | undefined,
+  theme: Parameters<typeof getThemeColor>[1]
+): string | undefined {
+  if (!gradient) {
+    return undefined;
+  }
+  const from = getThemeColor(gradient.from, theme);
+  const to = getThemeColor(gradient.to, theme);
+  const deg = gradient.deg ?? 45;
+  return `linear-gradient(${deg}deg, ${from} 0%, ${to} 100%)`;
+}
+
 const varsResolver = createVarsResolver<LedFactory>(
   (
     theme,
-    { size, radius, color, offColor, intensity, animationDuration, animationCount, justify }
+    {
+      size,
+      radius,
+      color,
+      offColor,
+      intensity,
+      animationDuration,
+      animationCount,
+      animationDelay,
+      justify,
+      gradient,
+    }
   ) => {
     return {
       root: {
@@ -132,8 +175,10 @@ const varsResolver = createVarsResolver<LedFactory>(
         '--led-animation-duration':
           animationDuration !== undefined ? `${animationDuration}s` : '1.5s',
         '--led-animation-count': animationCount !== undefined ? String(animationCount) : undefined,
+        '--led-animation-delay': animationDelay !== undefined ? `${animationDelay}s` : undefined,
         '--led-glow-size': `calc(var(--led-size) * 0.6)`,
         '--led-justify-content': justify != null ? String(justify) : 'center',
+        '--led-gradient': resolveGradient(gradient, theme),
       },
     };
   }
@@ -149,6 +194,8 @@ export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
     intensity,
     animationDuration,
     animationCount,
+    animationDelay,
+    onAnimationEnd,
     value,
     animate,
     animationType,
@@ -158,7 +205,10 @@ export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
     justify,
     onChange,
     tooltip,
+    tooltipProps,
     shape,
+    gradient,
+    description,
 
     classNames,
     style,
@@ -201,12 +251,20 @@ export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
       role={isInteractive ? 'switch' : 'status'}
       aria-checked={isInteractive ? value : undefined}
       aria-label={typeof label === 'string' ? label : undefined}
+      aria-description={description}
       tabIndex={isInteractive ? 0 : undefined}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       {...getStyles('root')}
       {...others}
-      mod={[{ 'label-position': labelPosition, interactive: isInteractive }, mod]}
+      mod={[
+        {
+          'label-position':
+            label !== undefined && label !== null && label !== '' ? labelPosition : undefined,
+          interactive: isInteractive,
+        },
+        mod,
+      ]}
       __vars={{
         '--label-fz': getFontSize(size),
         '--label-lh': getSize(size, 'label-lh'),
@@ -218,16 +276,24 @@ export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
         data-value={value ? true : undefined}
         data-animate={animate && value && animationType !== 'none' ? animationType : undefined}
         data-shape={shape}
+        data-gradient={gradient ? true : undefined}
+        onAnimationEnd={onAnimationEnd}
       >
         <Box {...getStyles('glow')} />
         <Box {...getStyles('light')} />
       </Box>
-      {label != null && <Box {...getStyles('label')}>{label}</Box>}
+      {label !== undefined && label !== null && label !== '' && (
+        <Box {...getStyles('label')}>{label}</Box>
+      )}
     </Box>
   );
 
   if (tooltip) {
-    return <Tooltip label={tooltip}>{content}</Tooltip>;
+    return (
+      <Tooltip label={tooltip} {...tooltipProps}>
+        {content}
+      </Tooltip>
+    );
   }
 
   return content;

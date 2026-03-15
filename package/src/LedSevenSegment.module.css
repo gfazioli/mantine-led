@@ -1,0 +1,134 @@
+.root {
+  --seven-seg-size-xs: 24px;
+  --seven-seg-size-sm: 36px;
+  --seven-seg-size-md: 48px;
+  --seven-seg-size-lg: 64px;
+  --seven-seg-size-xl: 96px;
+
+  display: inline-flex;
+  align-items: flex-end;
+  gap: var(--seven-seg-gap, var(--mantine-spacing-xs));
+}
+
+.digit {
+  position: relative;
+  width: calc(var(--seven-seg-size) * 0.6);
+  height: var(--seven-seg-size);
+}
+
+.segment {
+  position: absolute;
+  border-radius: 1px;
+  background-color: var(
+    --seven-seg-off-color,
+    color-mix(in srgb, var(--seven-seg-color) 15%, var(--mantine-color-body) 85%)
+  );
+  opacity: 0.4;
+  transition: opacity 0.15s ease;
+
+  &[data-active] {
+    background-color: var(--seven-seg-color);
+    opacity: var(--seven-seg-intensity);
+    box-shadow: 0 0 4px color-mix(in srgb, var(--seven-seg-color) 50%, transparent);
+  }
+
+  /* Horizontal segments: a, d, g */
+  &[data-segment='a'],
+  &[data-segment='d'],
+  &[data-segment='g'] {
+    left: 12%;
+    right: 12%;
+    height: 10%;
+  }
+
+  &[data-segment='a'] {
+    top: 0;
+  }
+
+  &[data-segment='g'] {
+    top: 45%;
+  }
+
+  &[data-segment='d'] {
+    bottom: 0;
+  }
+
+  /* Vertical segments: b, c, e, f */
+  &[data-segment='b'],
+  &[data-segment='c'],
+  &[data-segment='e'],
+  &[data-segment='f'] {
+    width: 12%;
+    top: auto;
+    bottom: auto;
+    height: 38%;
+  }
+
+  &[data-segment='f'] {
+    left: 2%;
+    top: 6%;
+  }
+
+  &[data-segment='b'] {
+    right: 2%;
+    top: 6%;
+  }
+
+  &[data-segment='e'] {
+    left: 2%;
+    bottom: 6%;
+  }
+
+  &[data-segment='c'] {
+    right: 2%;
+    bottom: 6%;
+  }
+}
+
+.colon {
+  position: relative;
+  width: calc(var(--seven-seg-size) * 0.15);
+  height: var(--seven-seg-size);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(var(--seven-seg-size) * 0.1);
+    height: calc(var(--seven-seg-size) * 0.1);
+    border-radius: 50%;
+    background-color: var(--seven-seg-color);
+    opacity: var(--seven-seg-intensity);
+    box-shadow: 0 0 4px color-mix(in srgb, var(--seven-seg-color) 50%, transparent);
+  }
+
+  &::before {
+    top: 25%;
+  }
+
+  &::after {
+    top: 65%;
+  }
+}
+
+.dot {
+  position: relative;
+  width: calc(var(--seven-seg-size) * 0.15);
+  height: var(--seven-seg-size);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(var(--seven-seg-size) * 0.1);
+    height: calc(var(--seven-seg-size) * 0.1);
+    border-radius: 50%;
+    background-color: var(--seven-seg-color);
+    opacity: var(--seven-seg-intensity);
+    box-shadow: 0 0 4px color-mix(in srgb, var(--seven-seg-color) 50%, transparent);
+  }
+}

@@ -1,0 +1,6 @@
+.root {
+  display: inline-grid;
+  grid-template-columns: repeat(var(--led-matrix-cols, 3), auto);
+  gap: var(--led-matrix-gap, 4px);
+  align-items: center;
+}

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Divider, Group, Paper, Stack, Text } from '@mantine/core';
 import { Led, type LedProps } from './Led';
 import { LedGroup } from './LedGroup';
+import { LedMatrix } from './LedMatrix';
+import { LedSevenSegment } from './LedSevenSegment';
 
 export default {
   title: 'Components/Led',
@@ -51,7 +53,7 @@ export default {
     },
     variant: {
       control: 'select',
-      options: ['flat', '3d'],
+      options: ['flat', '3d', 'neon', 'dot'],
     },
     intensity: {
       control: { type: 'range', min: 0, max: 100, step: 10 },
@@ -377,6 +379,120 @@ export function LedGroupStory() {
         </Text>
         <LedGroup value={2} count={4} direction="column" color="orange" size="md" variant="3d" />
       </Paper>
+    </Stack>
+  );
+}
+
+export function Variants() {
+  return (
+    <Group p="md">
+      {(['flat', '3d', 'neon', 'dot'] as const).map((v) => (
+        <Stack key={v} align="center">
+          <Led variant={v} size="xl" />
+          <Led variant={v} size="xl" value={false} />
+          <Text size="xs" tt="capitalize">
+            {v}
+          </Text>
+        </Stack>
+      ))}
+    </Group>
+  );
+}
+
+export function NeonVariant() {
+  return (
+    <Group p="md" bg="dark.9" style={{ borderRadius: 8, padding: 32 }}>
+      {['red', 'green', 'blue', 'cyan', 'pink', 'yellow'].map((color) => (
+        <Led key={color} variant="neon" size="xl" color={color} />
+      ))}
+    </Group>
+  );
+}
+
+export function Gradient() {
+  return (
+    <Group p="md">
+      <Led gradient={{ from: 'red', to: 'orange', deg: 45 }} size="xl" />
+      <Led gradient={{ from: 'blue', to: 'cyan', deg: 90 }} size="xl" variant="3d" />
+      <Led gradient={{ from: 'grape', to: 'pink' }} size="xl" variant="neon" />
+      <Led gradient={{ from: 'teal', to: 'lime' }} size="xl" variant="dot" />
+    </Group>
+  );
+}
+
+export function CascadeAnimation() {
+  return (
+    <Stack p="md" gap="xl">
+      <LedGroup
+        value={8}
+        count={8}
+        animate
+        animationType="pulse"
+        animationDelay={0.15}
+        size="lg"
+        color="cyan"
+        variant="3d"
+      />
+      <LedGroup
+        value={6}
+        count={6}
+        animate
+        animationType="glow"
+        animationDelay={0.2}
+        size="lg"
+        color="violet"
+        variant="neon"
+      />
+    </Stack>
+  );
+}
+
+export function VUMeter() {
+  const [level, setLevel] = useState(7);
+  return (
+    <Stack p="md" align="center">
+      <LedGroup
+        value={level}
+        count={10}
+        colorScale={['green', 'green', 'green', 'yellow', 'yellow', 'orange', 'red', 'red']}
+        size="md"
+        shape="rectangle"
+      />
+      <input
+        type="range"
+        min={0}
+        max={10}
+        value={level}
+        onChange={(e) => setLevel(Number(e.target.value))}
+      />
+    </Stack>
+  );
+}
+
+export function MatrixStory() {
+  const heart = [
+    [false, true, false, true, false],
+    [true, true, true, true, true],
+    [true, true, true, true, true],
+    [false, true, true, true, false],
+    [false, false, true, false, false],
+  ];
+
+  return (
+    <Group p="md">
+      <LedMatrix value={heart} color="red" size="sm" />
+      <LedMatrix rows={4} cols={8} color="green" size="xs" />
+    </Group>
+  );
+}
+
+export function SevenSegmentStory() {
+  return (
+    <Stack p="md" gap="xl">
+      <LedSevenSegment value={1234} color="red" size="lg" />
+      <LedSevenSegment value="12:30" color="green" size="md" />
+      <LedSevenSegment value="HELLO" color="cyan" size="sm" />
+      <LedSevenSegment value={42} color="orange" size="xl" />
     </Stack>
   );
 }

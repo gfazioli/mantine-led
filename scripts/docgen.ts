@@ -5,7 +5,12 @@ const getComponentPath = (componentPath: string) =>
   path.join(process.cwd(), 'package/src', componentPath);
 
 generateDeclarations({
-  componentsPaths: [getComponentPath('Led.tsx')],
+  componentsPaths: [
+    getComponentPath('Led.tsx'),
+    getComponentPath('LedGroup.tsx'),
+    getComponentPath('LedMatrix.tsx'),
+    getComponentPath('LedSevenSegment.tsx'),
+  ],
   tsConfigPath: path.join(process.cwd(), 'tsconfig.json'),
   outputPath: path.join(process.cwd(), 'docs'),
 });

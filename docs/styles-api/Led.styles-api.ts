@@ -19,8 +19,10 @@ export const LedStylesApi: StylesApiData<LedFactory> = {
       '--led-intensity': 'Controls brightness intensity (0-1)',
       '--led-animation-duration': 'Controls animation duration',
       '--led-animation-count': 'Controls animation iteration count',
+      '--led-animation-delay': 'Controls animation start delay',
       '--led-glow-size': 'Controls outer glow size',
       '--led-justify-content': 'Controls label and LED alignment',
+      '--led-gradient': 'Controls gradient background when on',
     },
   },
 
@@ -50,7 +52,7 @@ export const LedStylesApi: StylesApiData<LedFactory> = {
     {
       modifier: 'data-variant',
       selector: 'led',
-      value: 'flat | 3d',
+      value: 'flat | 3d | neon | dot',
       condition: 'Based on `variant` prop',
     },
     {
@@ -58,6 +60,11 @@ export const LedStylesApi: StylesApiData<LedFactory> = {
       selector: 'led',
       value: 'circle | square | rectangle',
       condition: 'Based on `shape` prop',
+    },
+    {
+      modifier: 'data-gradient',
+      selector: 'led',
+      condition: '`gradient` prop is provided',
     },
   ],
 };
