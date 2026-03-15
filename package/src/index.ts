@@ -3,16 +3,12 @@ import { LedGroup } from './LedGroup';
 import { LedMatrix } from './LedMatrix';
 import { LedSevenSegment } from './LedSevenSegment';
 
-// Attach compound components
-(Led as any).Group = LedGroup;
-(Led as any).Matrix = LedMatrix;
-(Led as any).SevenSegment = LedSevenSegment;
-
-const LedWithCompounds = Led as typeof Led & {
-  Group: typeof LedGroup;
-  Matrix: typeof LedMatrix;
-  SevenSegment: typeof LedSevenSegment;
-};
+// Attach compound components (typed, no `any`)
+const LedWithCompounds = Object.assign(Led, {
+  Group: LedGroup,
+  Matrix: LedMatrix,
+  SevenSegment: LedSevenSegment,
+});
 
 export { LedWithCompounds as Led, LedGroup, LedMatrix, LedSevenSegment };
 export type {

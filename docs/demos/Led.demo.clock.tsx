@@ -23,9 +23,10 @@ function formatTime(date: Date): string {
 }
 
 function Demo() {
-  const [time, setTime] = useState(formatTime(new Date()));
+  const [time, setTime] = useState('00:00:00');
 
   useEffect(() => {
+    setTime(formatTime(new Date()));
     const interval = setInterval(() => setTime(formatTime(new Date())), 1000);
     return () => clearInterval(interval);
   }, []);
@@ -42,9 +43,10 @@ function Demo() {
 `;
 
 function Demo() {
-  const [time, setTime] = useState(formatTime(new Date()));
+  const [time, setTime] = useState('00:00:00');
 
   useEffect(() => {
+    setTime(formatTime(new Date()));
     const interval = setInterval(() => setTime(formatTime(new Date())), 1000);
     return () => clearInterval(interval);
   }, []);
