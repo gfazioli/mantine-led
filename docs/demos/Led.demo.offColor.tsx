@@ -14,7 +14,7 @@ function Demo() {
         <Text size="xs">Off (red)</Text>
       </Stack>
       <Stack align="center" gap="xs">
-        <Led value={true} offColor="red" color="green" size="lg" />
+        <Led value offColor="red" color="green" size="lg" />
         <Text size="xs">On (green)</Text>
       </Stack>
       <Stack align="center" gap="xs">
@@ -22,7 +22,7 @@ function Demo() {
         <Text size="xs">Off 3D (gray)</Text>
       </Stack>
       <Stack align="center" gap="xs">
-        <Led value={true} offColor="gray" color="blue" size="lg" variant="3d" />
+        <Led value offColor="gray" color="blue" size="lg" variant="3d" />
         <Text size="xs">On 3D (blue)</Text>
       </Stack>
     </Group>

@@ -17,14 +17,31 @@ function Demo() {
             <Text fw={800}>Network</Text>
             <Paper withBorder p="md">
               <Stack gap="xs">
-                <Led label="Internet" color="green" labelPosition="left" justify="space-between" />
-                <Led label="LAN" color="green" labelPosition="left" justify="space-between" />
+                <Led
+                  label="Internet"
+                  color="green"
+                  labelPosition="left"
+                  justify="space-between"
+                  variant="3d"
+                  tooltip="Connected — 142ms latency"
+                />
+                <Led
+                  label="LAN"
+                  color="green"
+                  labelPosition="left"
+                  justify="space-between"
+                  variant="3d"
+                  tooltip="192.168.1.0/24"
+                />
                 <Led
                   value={false}
                   label="VPN"
-                  color="gray"
+                  offColor="red"
+                  color="green"
                   labelPosition="left"
                   justify="space-between"
+                  variant="3d"
+                  tooltip="Disconnected"
                 />
               </Stack>
             </Paper>
@@ -35,21 +52,33 @@ function Demo() {
             <Paper withBorder p="md">
               <Stack gap="xs">
                 <Led
-                  value
                   label="Database"
                   color="green"
                   labelPosition="left"
                   animate
                   animationType="blink"
+                  animationCount={3}
                   justify="space-between"
+                  variant="3d"
+                  tooltip="Replication in progress..."
                 />
                 <Led
                   label="API Server"
                   color="green"
                   labelPosition="left"
                   justify="space-between"
+                  variant="3d"
+                  tooltip="Uptime: 14d 3h"
                 />
-                <Led label="Cache" color="yellow" labelPosition="left" justify="space-between" />
+                <Led
+                  label="Cache"
+                  color="yellow"
+                  labelPosition="left"
+                  justify="space-between"
+                  variant="3d"
+                  tooltip="Hit rate: 78% — consider scaling"
+                  tooltipProps={{ color: 'yellow' }}
+                />
               </Stack>
             </Paper>
           </Stack>
@@ -63,18 +92,29 @@ function Demo() {
                   color="green"
                   labelPosition="left"
                   justify="space-between"
-                  animate
-                  animationType="glow"
+                  variant="3d"
+                  tooltip="12% average"
                 />
-                <Led label="Memory" color="yellow" labelPosition="left" justify="space-between" />
                 <Led
-                  value
+                  label="Memory"
+                  color="yellow"
+                  labelPosition="left"
+                  justify="space-between"
+                  variant="3d"
+                  tooltip="6.2 / 8 GB used"
+                  tooltipProps={{ color: 'yellow' }}
+                />
+                <Led
                   label="Disk Space"
                   color="red"
                   labelPosition="left"
                   animate
                   animationType="flash"
+                  animationCount={5}
                   justify="space-between"
+                  variant="3d"
+                  tooltip="92% full — action required"
+                  tooltipProps={{ color: 'red' }}
                 />
               </Stack>
             </Paper>
@@ -84,19 +124,32 @@ function Demo() {
             <Text fw={800}>Security</Text>
             <Paper withBorder p="md">
               <Stack gap="xs">
-                <Led label="Firewall" color="green" labelPosition="left" justify="space-between" />
+                <Led
+                  label="Firewall"
+                  color="green"
+                  labelPosition="left"
+                  justify="space-between"
+                  variant="3d"
+                  tooltip="All rules active"
+                />
                 <Led
                   label="SSL Cert"
                   color="green"
                   labelPosition="left"
                   justify="space-between"
                   value={false}
+                  offColor="red"
+                  variant="3d"
+                  tooltip="Expired 2 days ago!"
+                  tooltipProps={{ color: 'red' }}
                 />
                 <Led
                   label="Auth Service"
                   color="green"
                   labelPosition="left"
                   justify="space-between"
+                  variant="3d"
+                  tooltip="OAuth 2.0 — 0 failed attempts"
                 />
               </Stack>
             </Paper>
@@ -119,14 +172,31 @@ function Demo() {
             <Text fw={800}>Network</Text>
             <Paper withBorder p="md">
               <Stack gap="xs">
-                <Led label="Internet" color="green" labelPosition="left" justify="space-between" />
-                <Led label="LAN" color="green" labelPosition="left" justify="space-between" />
+                <Led
+                  label="Internet"
+                  color="green"
+                  labelPosition="left"
+                  justify="space-between"
+                  variant="3d"
+                  tooltip="Connected — 142ms latency"
+                />
+                <Led
+                  label="LAN"
+                  color="green"
+                  labelPosition="left"
+                  justify="space-between"
+                  variant="3d"
+                  tooltip="192.168.1.0/24"
+                />
                 <Led
                   value={false}
                   label="VPN"
-                  color="gray"
+                  offColor="red"
+                  color="green"
                   labelPosition="left"
                   justify="space-between"
+                  variant="3d"
+                  tooltip="Disconnected"
                 />
               </Stack>
             </Paper>
@@ -137,21 +207,33 @@ function Demo() {
             <Paper withBorder p="md">
               <Stack gap="xs">
                 <Led
-                  value
                   label="Database"
                   color="green"
                   labelPosition="left"
                   animate
                   animationType="blink"
+                  animationCount={3}
                   justify="space-between"
+                  variant="3d"
+                  tooltip="Replication in progress..."
                 />
                 <Led
                   label="API Server"
                   color="green"
                   labelPosition="left"
                   justify="space-between"
+                  variant="3d"
+                  tooltip="Uptime: 14d 3h"
                 />
-                <Led label="Cache" color="yellow" labelPosition="left" justify="space-between" />
+                <Led
+                  label="Cache"
+                  color="yellow"
+                  labelPosition="left"
+                  justify="space-between"
+                  variant="3d"
+                  tooltip="Hit rate: 78% — consider scaling"
+                  tooltipProps={{ color: 'yellow' }}
+                />
               </Stack>
             </Paper>
           </Stack>
@@ -165,18 +247,29 @@ function Demo() {
                   color="green"
                   labelPosition="left"
                   justify="space-between"
-                  animate
-                  animationType="glow"
+                  variant="3d"
+                  tooltip="12% average"
                 />
-                <Led label="Memory" color="yellow" labelPosition="left" justify="space-between" />
                 <Led
-                  value
+                  label="Memory"
+                  color="yellow"
+                  labelPosition="left"
+                  justify="space-between"
+                  variant="3d"
+                  tooltip="6.2 / 8 GB used"
+                  tooltipProps={{ color: 'yellow' }}
+                />
+                <Led
                   label="Disk Space"
                   color="red"
                   labelPosition="left"
                   animate
                   animationType="flash"
+                  animationCount={5}
                   justify="space-between"
+                  variant="3d"
+                  tooltip="92% full — action required"
+                  tooltipProps={{ color: 'red' }}
                 />
               </Stack>
             </Paper>
@@ -186,19 +279,32 @@ function Demo() {
             <Text fw={800}>Security</Text>
             <Paper withBorder p="md">
               <Stack gap="xs">
-                <Led label="Firewall" color="green" labelPosition="left" justify="space-between" />
+                <Led
+                  label="Firewall"
+                  color="green"
+                  labelPosition="left"
+                  justify="space-between"
+                  variant="3d"
+                  tooltip="All rules active"
+                />
                 <Led
                   label="SSL Cert"
                   color="green"
                   labelPosition="left"
                   justify="space-between"
                   value={false}
+                  offColor="red"
+                  variant="3d"
+                  tooltip="Expired 2 days ago!"
+                  tooltipProps={{ color: 'red' }}
                 />
                 <Led
                   label="Auth Service"
                   color="green"
                   labelPosition="left"
                   justify="space-between"
+                  variant="3d"
+                  tooltip="OAuth 2.0 — 0 failed attempts"
                 />
               </Stack>
             </Paper>
