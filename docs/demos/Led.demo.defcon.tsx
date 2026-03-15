@@ -36,7 +36,7 @@ function Demo() {
     <Paper p="xl" withBorder>
       <Stack gap="lg">
         <Title order={3} ta="center">Defense Readiness Condition</Title>
-        
+
         <Stack gap="md">
           {DEFCON_LEVELS.map(({ level, color, label, description }) => (
             <Group key={level} justify="space-between">
@@ -44,9 +44,13 @@ function Demo() {
                 <Led
                   value={currentLevel === level}
                   color={color}
+                  offColor="gray"
                   size="lg"
+                  variant="3d"
                   animate={currentLevel === level && level <= 2}
                   animationType={level === 1 ? 'flash' : 'pulse'}
+                  animationCount={level === 1 ? 6 : undefined}
+                  tooltip={\`Level \${level}: \${description}\`}
                 />
                 <div>
                   <Text fw={currentLevel === level ? 700 : 400} size="sm">
@@ -98,9 +102,13 @@ function Demo() {
                 <Led
                   value={currentLevel === level}
                   color={color}
+                  offColor="gray"
                   size="lg"
+                  variant="3d"
                   animate={currentLevel === level && level <= 2}
                   animationType={level === 1 ? 'flash' : 'pulse'}
+                  animationCount={level === 1 ? 6 : undefined}
+                  tooltip={`Level ${level}: ${description}`}
                 />
                 <div>
                   <Text fw={currentLevel === level ? 700 : 400} size="sm">
