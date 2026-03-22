@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Divider, Group, Paper, Stack, Text } from '@mantine/core';
+import { LedGroup } from './Group';
 import { Led, type LedProps } from './Led';
-import { LedGroup } from './LedGroup';
-import { LedMatrix } from './LedMatrix';
-import { LedSevenSegment } from './LedSevenSegment';
+import { LedMatrix } from './Matrix';
+import { LedSevenSegment } from './SevenSegment';
 
 export default {
   title: 'Components/Led',

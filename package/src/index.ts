@@ -1,16 +1,7 @@
-import { Led } from './Led';
-import { LedGroup } from './LedGroup';
-import { LedMatrix } from './LedMatrix';
-import { LedSevenSegment } from './LedSevenSegment';
-
-// Attach compound components (typed, no `any`)
-const LedWithCompounds = Object.assign(Led, {
-  Group: LedGroup,
-  Matrix: LedMatrix,
-  SevenSegment: LedSevenSegment,
-});
-
-export { LedWithCompounds as Led, LedGroup, LedMatrix, LedSevenSegment };
+export { Led } from './Led';
+export { LedGroup } from './Group';
+export { LedMatrix } from './Matrix';
+export { LedSevenSegment } from './SevenSegment';
 export type {
   LedAnimationType,
   LedBaseProps,
@@ -26,16 +17,16 @@ export type {
   LedGroupFactory,
   LedGroupProps,
   LedGroupStylesNames,
-} from './LedGroup';
+} from './Group';
 export type {
   LedMatrixCssVariables,
   LedMatrixFactory,
   LedMatrixProps,
   LedMatrixStylesNames,
-} from './LedMatrix';
+} from './Matrix';
 export type {
   LedSevenSegmentCssVariables,
   LedSevenSegmentFactory,
   LedSevenSegmentProps,
   LedSevenSegmentStylesNames,
-} from './LedSevenSegment';
+} from './SevenSegment';

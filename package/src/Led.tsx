@@ -20,6 +20,9 @@ import {
   type StyleProp,
   type TooltipProps,
 } from '@mantine/core';
+import { LedGroup } from './Group';
+import { LedMatrix } from './Matrix';
+import { LedSevenSegment } from './SevenSegment';
 import classes from './Led.module.css';
 
 export type LedVariant = 'flat' | '3d' | 'neon' | 'dot';
@@ -119,6 +122,11 @@ export type LedFactory = PolymorphicFactory<{
   stylesNames: LedStylesNames;
   variant: LedVariant;
   vars: LedCssVariables;
+  staticComponents: {
+    Group: typeof LedGroup;
+    Matrix: typeof LedMatrix;
+    SevenSegment: typeof LedSevenSegment;
+  };
 }>;
 
 const defaultProps: Partial<LedProps> = {
@@ -303,3 +311,6 @@ export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
 
 Led.classes = classes;
 Led.displayName = 'Led';
+Led.Group = LedGroup;
+Led.Matrix = LedMatrix;
+Led.SevenSegment = LedSevenSegment;

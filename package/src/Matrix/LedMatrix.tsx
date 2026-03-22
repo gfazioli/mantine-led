@@ -14,7 +14,8 @@ import {
   type MantineSize,
   type MantineSpacing,
 } from '@mantine/core';
-import { Led, type LedAnimationType, type LedShape, type LedVariant } from './Led';
+import type { LedAnimationType, LedShape, LedVariant } from '../Led';
+import { LedIndicator } from '../LedIndicator';
 import classes from './LedMatrix.module.css';
 
 export type LedMatrixStylesNames = 'root';
@@ -145,7 +146,7 @@ export const LedMatrix = factory<LedMatrixFactory>((_props, ref) => {
     for (let c = 0; c < colCount; c++) {
       const isOn = value ? (value[r]?.[c] ?? false) : true;
       leds.push(
-        <Led
+        <LedIndicator
           key={`${r}-${c}`}
           value={isOn}
           color={color}

@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from '@mantine-tests/core';
+import { LedGroup } from './Group';
 import { Led } from './Led';
-import { LedGroup } from './LedGroup';
-import { LedMatrix } from './LedMatrix';
-import { LedSevenSegment } from './LedSevenSegment';
+import { LedMatrix } from './Matrix';
+import { LedSevenSegment } from './SevenSegment';
 
 describe('Led', () => {
   it('renders without crashing', () => {
