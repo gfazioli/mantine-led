@@ -1,3 +1,4 @@
+/* Keep size values in sync with LED_SIZES in LedIndicator.tsx */
 .root {
   --led-size-xs: 8px;
   --led-size-sm: 12px;

@@ -26,6 +26,7 @@ function resolveGradient(
   return `linear-gradient(${deg}deg, ${from} 0%, ${to} 100%)`;
 }
 
+// Keep in sync with --led-size-* custom properties in Led.module.css
 const LED_SIZES: Record<string, string> = {
   xs: '8px',
   sm: '12px',
