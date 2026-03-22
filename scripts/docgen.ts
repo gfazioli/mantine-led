@@ -7,9 +7,9 @@ const getComponentPath = (componentPath: string) =>
 generateDeclarations({
   componentsPaths: [
     getComponentPath('Led.tsx'),
-    getComponentPath('LedGroup.tsx'),
-    getComponentPath('LedMatrix.tsx'),
-    getComponentPath('LedSevenSegment.tsx'),
+    getComponentPath('Group/LedGroup.tsx'),
+    getComponentPath('Matrix/LedMatrix.tsx'),
+    getComponentPath('SevenSegment/LedSevenSegment.tsx'),
   ],
   tsConfigPath: path.join(process.cwd(), 'tsconfig.json'),
   outputPath: path.join(process.cwd(), 'docs'),

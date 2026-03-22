@@ -15,7 +15,8 @@ import {
   type MantineSize,
   type MantineSpacing,
 } from '@mantine/core';
-import { Led, type LedAnimationType, type LedShape, type LedVariant } from './Led';
+import type { LedAnimationType, LedShape, LedVariant } from '../Led';
+import { LedIndicator } from '../LedIndicator';
 import classes from './LedGroup.module.css';
 
 export type LedGroupStylesNames = 'root';
@@ -161,7 +162,7 @@ export const LedGroup = factory<LedGroupFactory>((_props, ref) => {
     const ledDelay = animationDelay !== undefined ? animationDelay * i : undefined;
 
     return (
-      <Led
+      <LedIndicator
         key={i}
         value={isOn}
         color={ledColor}
