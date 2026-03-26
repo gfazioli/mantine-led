@@ -301,6 +301,24 @@ describe('LedMatrix', () => {
     render(<LedMatrix ref={ref} />);
     expect(ref.current).toBeTruthy();
   });
+
+  it('accepts responsive cols object and uses base value for LED count', () => {
+    const { container } = render(<LedMatrix rows={2} cols={{ base: 3, md: 5 }} />);
+    expect(container.querySelectorAll('[data-variant]').length).toBe(6);
+  });
+
+  it('accepts responsive gap object without crashing', () => {
+    const { container } = render(<LedMatrix rows={2} cols={3} gap={{ base: 2, md: 'sm' }} />);
+    expect(container.querySelectorAll('[data-variant]').length).toBe(6);
+  });
+
+  it('renders LedMatrixMediaVariables style element', () => {
+    const { container } = render(
+      <LedMatrix rows={2} cols={{ base: 3, md: 5 }} gap={{ base: 2, md: 'md' }} />
+    );
+    const styleEl = container.parentElement?.querySelector('style');
+    expect(styleEl).toBeTruthy();
+  });
 });
 
 describe('LedSevenSegment', () => {
