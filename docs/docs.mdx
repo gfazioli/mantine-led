@@ -121,6 +121,12 @@ Use `Led.Matrix` to render a 2D grid of LEDs. Pass a `boolean[][]` array to cont
 
 <Demo data={demos.matrix} />
 
+### Responsive Props
+
+`Led.Matrix` supports responsive `cols` and `gap` props — just like Mantine's `SimpleGrid`. Pass an object with breakpoint keys to adjust the grid layout at different screen sizes:
+
+<Demo data={demos.matrixResponsive} />
+
 ## Led.SevenSegment
 
 Use `Led.SevenSegment` to display numbers and characters using a classic seven-segment display. Supports digits 0-9, hex characters A-F, and special characters like `:`, `.`, `-`:
