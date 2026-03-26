@@ -29,7 +29,7 @@ export function LedMatrixMediaVariables({
     '--led-matrix-gap': getSpacing(getBaseValue(gap)),
   });
 
-  const queries = keys(theme.breakpoints).reduce<Record<string, Record<string, any>>>(
+  const queries = keys(theme.breakpoints).reduce<Record<string, Record<string, string | number>>>(
     (acc, breakpoint) => {
       if (!acc[breakpoint]) {
         acc[breakpoint] = {};

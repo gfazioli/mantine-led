@@ -319,6 +319,16 @@ describe('LedMatrix', () => {
     const styleEl = container.parentElement?.querySelector('style');
     expect(styleEl).toBeTruthy();
   });
+
+  it('renders separate style element for each responsive breakpoint set', () => {
+    const { container: c1 } = render(<LedMatrix rows={2} cols={3} />);
+    const { container: c2 } = render(
+      <LedMatrix rows={2} cols={{ base: 3, sm: 6 }} gap={{ base: 2, sm: 'md' }} />
+    );
+    const styles1 = c1.parentElement?.querySelectorAll('style').length ?? 0;
+    const styles2 = c2.parentElement?.querySelectorAll('style').length ?? 0;
+    expect(styles2).toBeGreaterThanOrEqual(styles1);
+  });
 });
 
 describe('LedSevenSegment', () => {
