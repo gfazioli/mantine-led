@@ -10,8 +10,8 @@ function Demo() {
   return (
     <Stack align="center" gap="xs">
       <Led.Matrix
-        rows={4}
-        cols={{ base: 4, sm: 6, md: 8, lg: 12 }}
+        rows={2}
+        cols={{ base: 4, sm: 8, md: 12, lg: 16 }}
         gap={{ base: 2, sm: 4, md: 6 }}
         color="cyan"
         size="xs"
@@ -30,8 +30,8 @@ export const matrixResponsive: MantineDemo = {
   component: () => (
     <Stack align="center" gap="xs">
       <Led.Matrix
-        rows={4}
-        cols={{ base: 4, sm: 6, md: 8, lg: 12 }}
+        rows={2}
+        cols={{ base: 4, sm: 8, md: 12, lg: 16 }}
         gap={{ base: 2, sm: 4, md: 6 }}
         color="cyan"
         size="xs"
