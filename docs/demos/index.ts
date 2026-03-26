@@ -10,6 +10,7 @@ export { gradient } from './Led.demo.gradient';
 export { group } from './Led.demo.group';
 export { labels } from './Led.demo.labels';
 export { matrix } from './Led.demo.matrix';
+export { matrixResponsive } from './Led.demo.matrixResponsive';
 export { offColor } from './Led.demo.offColor';
 export { onChange } from './Led.demo.onChange';
 export { passwordStrength } from './Led.demo.passwordStrength';

@@ -17,7 +17,6 @@ import {
   type MantineGradient,
   type MantineRadius,
   type MantineSize,
-  type StyleProp,
   type TooltipProps,
 } from '@mantine/core';
 import { LedGroup } from './Group';
@@ -89,7 +88,7 @@ export interface LedBaseProps {
   labelPosition?: 'left' | 'right';
 
   /** `justify-content` CSS property */
-  justify?: StyleProp<React.CSSProperties['justifyContent']>;
+  justify?: React.CSSProperties['justifyContent'];
 
   /** Color when LED is off */
   offColor?: MantineColor;

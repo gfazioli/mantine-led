@@ -2,20 +2,22 @@ import React from 'react';
 import {
   Box,
   BoxProps,
-  createVarsResolver,
   Factory,
   factory,
-  getSpacing,
+  getBaseValue,
   StylesApiProps,
   useProps,
+  useRandomClassName,
   useStyles,
   type MantineColor,
   type MantineRadius,
   type MantineSize,
   type MantineSpacing,
+  type StyleProp,
 } from '@mantine/core';
 import type { LedAnimationType, LedShape, LedVariant } from '../Led';
 import { LedIndicator } from '../LedIndicator';
+import { LedMatrixMediaVariables } from './LedMatrixMediaVariables';
 import classes from './LedMatrix.module.css';
 
 export type LedMatrixStylesNames = 'root';
@@ -31,11 +33,11 @@ export interface LedMatrixProps extends BoxProps, StylesApiProps<LedMatrixFactor
   /** Number of rows (used when value is not provided) */
   rows?: number;
 
-  /** Number of columns (used when value is not provided) */
-  cols?: number;
+  /** Number of columns (used when value is not provided), supports responsive values */
+  cols?: StyleProp<number>;
 
-  /** Gap between LEDs */
-  gap?: MantineSpacing;
+  /** Gap between LEDs, supports responsive values */
+  gap?: StyleProp<MantineSpacing>;
 
   /** LED color from theme */
   color?: MantineColor;
@@ -87,16 +89,6 @@ const defaultProps: Partial<LedMatrixProps> = {
   shape: 'square',
 };
 
-const varsResolver = createVarsResolver<LedMatrixFactory>((_, { gap, cols, value }) => {
-  const colCount = value && value.length > 0 ? value[0].length : (cols ?? 3);
-  return {
-    root: {
-      '--led-matrix-cols': String(colCount),
-      '--led-matrix-gap': gap !== undefined ? getSpacing(gap) : undefined,
-    },
-  };
-});
-
 export const LedMatrix = factory<LedMatrixFactory>((_props, ref) => {
   const props = useProps('LedMatrix', defaultProps, _props);
   const {
@@ -135,11 +127,12 @@ export const LedMatrix = factory<LedMatrixFactory>((_props, ref) => {
     styles,
     unstyled,
     vars,
-    varsResolver,
   });
 
+  const responsiveClassName = useRandomClassName();
+
   const rowCount = value ? value.length : (rows ?? 3);
-  const colCount = value && value.length > 0 ? value[0].length : (cols ?? 3);
+  const colCount = value && value.length > 0 ? value[0].length : (getBaseValue(cols) ?? 3);
 
   const leds: React.ReactNode[] = [];
   for (let r = 0; r < rowCount; r++) {
@@ -166,9 +159,12 @@ export const LedMatrix = factory<LedMatrixFactory>((_props, ref) => {
   }
 
   return (
-    <Box ref={ref} {...getStyles('root')} {...others}>
-      {leds}
-    </Box>
+    <>
+      <LedMatrixMediaVariables {...props} selector={`.${responsiveClassName}`} />
+      <Box ref={ref} {...getStyles('root', { className: responsiveClassName })} {...others}>
+        {leds}
+      </Box>
+    </>
   );
 });
 

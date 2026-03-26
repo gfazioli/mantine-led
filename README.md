@@ -25,6 +25,7 @@ The [Mantine Led](https://gfazioli.github.io/mantine-led/) component is a highly
 
 - 🎨 **Theme Integration**: Full Mantine theme support with all theme colors
 - 📐 **Flexible Sizing**: Supports all Mantine sizes plus custom values
+- 📱 **Responsive Props**: `Led.Matrix` supports responsive `cols` and `gap` via Mantine breakpoint objects (e.g. `{ base: 4, md: 8 }`)
 - ✨ **Rich Animations**: Multiple animation types (pulse, flash, breathe, blink, glow)
 - 🎭 **Visual Variants**: Flat and 3D rendering styles
 - 🏷️ **Label Support**: Optional labels with configurable positioning
