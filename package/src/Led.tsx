@@ -191,7 +191,7 @@ const varsResolver = createVarsResolver<LedFactory>(
   }
 );
 
-export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
+export const Led = polymorphicFactory<LedFactory>((_props) => {
   const props = useProps('Led', defaultProps, _props);
   const {
     size,
@@ -254,7 +254,6 @@ export const Led = polymorphicFactory<LedFactory>((_props, ref) => {
 
   const content = (
     <Box
-      ref={ref}
       role={isInteractive ? 'switch' : 'status'}
       aria-checked={isInteractive ? value : undefined}
       aria-label={
