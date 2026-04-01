@@ -1,6 +1,6 @@
 {
   "name": "@gfazioli/mantine-led",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "A highly customizable LED indicator component for React applications built with Mantine. Provides visual feedback for status indicators with support for colors, sizes, animations, and controlled states.",
   "homepage": "https://gfazioli.github.io/mantine-led/",
   "packageManager": "yarn@4.0.1",
@@ -9,7 +9,8 @@
   "keywords": [
     "mantine",
     "mantine-ui",
-    "mantine-v8",
+    "mantine-ui",
+    "mantine-v9",
     "react",
     "react-component",
     "typescript",

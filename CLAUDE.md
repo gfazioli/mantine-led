@@ -1,20 +1,20 @@
 # CLAUDE.md
 
 ## Project
-`@gfazioli/mantine-led` — a Mantine React component library providing a customizable LED indicator with compound components for groups, matrices, and seven-segment displays.
+`@gfazioli/mantine-led` — a Mantine 9 React component library providing a customizable LED indicator with compound components for groups, matrices, and seven-segment displays. Requires React 19 and TypeScript 6.
 
 ## Commands
 | Command | Purpose |
 |---------|---------|
 | `yarn build` | Build the npm package via Rollup |
 | `yarn dev` | Start the Next.js docs dev server (port 9281) |
-| `yarn test` | Full test suite (syncpack + prettier + typecheck + lint + jest) |
+| `yarn test` | Full test suite (syncpack + oxfmt + typecheck + lint + jest) |
 | `yarn jest` | Run only Jest unit tests |
 | `yarn docgen` | Generate component API docs (docgen.json) |
 | `yarn docs:build` | Build the Next.js docs site for production |
 | `yarn docs:deploy` | Build and deploy docs to GitHub Pages |
 | `yarn lint` | Run ESLint and Stylelint |
-| `yarn prettier:write` | Format all files with Prettier |
+| `yarn format:write` | Format all files with oxfmt |
 | `yarn storybook` | Start Storybook dev server |
 | `yarn clean` | Remove build artifacts |
 | `yarn release:patch` | Bump patch version and deploy docs |
@@ -49,7 +49,7 @@ Rollup bundles to dual ESM/CJS with `'use client'` banner. CSS modules hashed wi
 Jest with `jsdom`, `esbuild-jest` transform, CSS mocked via `identity-obj-proxy`. Tests use `@mantine-tests/core` render helper.
 
 ## Ecosystem
-This repo is part of the Mantine Extensions ecosystem, derived from the `mantine-base-component` template. See the workspace CLAUDE.md at `/Users/giovambattistafazioli/Lavoro/GitHub/Mantine Extensions/CLAUDE.md` for:
+This repo is part of the Mantine Extensions ecosystem, derived from the `mantine-base-component` template. See the workspace `CLAUDE.md` (in the parent directory) for:
 - Development checklist (code -> test -> build -> docs -> release)
 - Cross-cutting patterns (compound components, responsive CSS, GitHub sync)
 - Update packages workflow

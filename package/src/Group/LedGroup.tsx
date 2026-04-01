@@ -110,7 +110,7 @@ function getScaleColor(index: number, total: number, scale: MantineColor[]): Man
   return scale[scaleIndex];
 }
 
-export const LedGroup = factory<LedGroupFactory>((_props, ref) => {
+export const LedGroup = factory<LedGroupFactory>((_props) => {
   const props = useProps('LedGroup', defaultProps, _props);
   const {
     value,
@@ -183,7 +183,7 @@ export const LedGroup = factory<LedGroupFactory>((_props, ref) => {
   });
 
   return (
-    <Box ref={ref} {...getStyles('root')} {...others}>
+    <Box {...getStyles('root')} {...others}>
       {leds}
     </Box>
   );

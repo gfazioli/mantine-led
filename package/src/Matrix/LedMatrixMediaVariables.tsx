@@ -40,7 +40,10 @@ export function LedMatrixMediaVariables({
       }
 
       if (typeof gap === 'object' && gap[breakpoint] !== undefined) {
-        acc[breakpoint]['--led-matrix-gap'] = getSpacing(gap[breakpoint]);
+        const spacingValue = getSpacing(gap[breakpoint]);
+        if (spacingValue !== undefined) {
+          acc[breakpoint]['--led-matrix-gap'] = spacingValue;
+        }
       }
 
       return acc;

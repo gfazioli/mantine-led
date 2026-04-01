@@ -89,7 +89,7 @@ const defaultProps: Partial<LedMatrixProps> = {
   shape: 'square',
 };
 
-export const LedMatrix = factory<LedMatrixFactory>((_props, ref) => {
+export const LedMatrix = factory<LedMatrixFactory>((_props) => {
   const props = useProps('LedMatrix', defaultProps, _props);
   const {
     value,
@@ -161,7 +161,7 @@ export const LedMatrix = factory<LedMatrixFactory>((_props, ref) => {
   return (
     <>
       <LedMatrixMediaVariables {...props} selector={`.${responsiveClassName}`} />
-      <Box ref={ref} {...getStyles('root', { className: responsiveClassName })} {...others}>
+      <Box {...getStyles('root', { className: responsiveClassName })} {...others}>
         {leds}
       </Box>
     </>

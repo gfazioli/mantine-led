@@ -92,62 +92,53 @@ export interface LedIndicatorProps {
   gradient?: MantineGradient;
 }
 
-export const LedIndicator = React.forwardRef<HTMLDivElement, LedIndicatorProps>(
-  (
-    {
-      value = true,
-      color = 'green',
-      offColor,
-      size = 'sm',
-      radius = 'xl',
-      variant = 'flat',
-      intensity = 80,
-      animate = false,
-      animationType = 'none',
-      animationDuration = 1.5,
-      animationCount,
-      animationDelay,
-      onAnimationEnd,
-      shape = 'circle',
-      gradient,
-    },
-    ref
-  ) => {
-    const theme = useMantineTheme();
-    const resolvedSize = resolveLedSize(size);
+export function LedIndicator({
+  value = true,
+  color = 'green',
+  offColor,
+  size = 'sm',
+  radius = 'xl',
+  variant = 'flat',
+  intensity = 80,
+  animate = false,
+  animationType = 'none',
+  animationDuration = 1.5,
+  animationCount,
+  animationDelay,
+  onAnimationEnd,
+  shape = 'circle',
+  gradient,
+}: LedIndicatorProps) {
+  const theme = useMantineTheme();
+  const resolvedSize = resolveLedSize(size);
 
-    const cssVars = {
-      '--led-size': resolvedSize,
-      '--led-radius': radius !== undefined ? getRadius(radius) : undefined,
-      '--led-color': getThemeColor(color, theme),
-      '--led-off-color': offColor ? getThemeColor(offColor, theme) : undefined,
-      '--led-intensity':
-        intensity !== undefined ? `${Math.min(100, Math.max(0, intensity)) / 100}` : '0.8',
-      '--led-animation-duration':
-        animationDuration !== undefined ? `${animationDuration}s` : '1.5s',
-      '--led-animation-count': animationCount !== undefined ? String(animationCount) : undefined,
-      '--led-animation-delay': animationDelay !== undefined ? `${animationDelay}s` : undefined,
-      '--led-glow-size': `calc(${resolvedSize} * 0.6)`,
-      '--led-gradient': resolveGradient(gradient, theme),
-    } as React.CSSProperties;
+  const cssVars = {
+    '--led-size': resolvedSize,
+    '--led-radius': radius !== undefined ? getRadius(radius) : undefined,
+    '--led-color': getThemeColor(color, theme),
+    '--led-off-color': offColor ? getThemeColor(offColor, theme) : undefined,
+    '--led-intensity':
+      intensity !== undefined ? `${Math.min(100, Math.max(0, intensity)) / 100}` : '0.8',
+    '--led-animation-duration': animationDuration !== undefined ? `${animationDuration}s` : '1.5s',
+    '--led-animation-count': animationCount !== undefined ? String(animationCount) : undefined,
+    '--led-animation-delay': animationDelay !== undefined ? `${animationDelay}s` : undefined,
+    '--led-glow-size': `calc(${resolvedSize} * 0.6)`,
+    '--led-gradient': resolveGradient(gradient, theme),
+  } as React.CSSProperties;
 
-    return (
-      <Box
-        ref={ref}
-        className={classes.led}
-        style={cssVars}
-        variant={variant}
-        data-value={value ? true : undefined}
-        data-animate={animate && value && animationType !== 'none' ? animationType : undefined}
-        data-shape={shape}
-        data-gradient={gradient ? true : undefined}
-        onAnimationEnd={onAnimationEnd}
-      >
-        <Box className={classes.glow} />
-        <Box className={classes.light} />
-      </Box>
-    );
-  }
-);
-
-LedIndicator.displayName = 'LedIndicator';
+  return (
+    <Box
+      className={classes.led}
+      style={cssVars}
+      variant={variant}
+      data-value={value ? true : undefined}
+      data-animate={animate && value && animationType !== 'none' ? animationType : undefined}
+      data-shape={shape}
+      data-gradient={gradient ? true : undefined}
+      onAnimationEnd={onAnimationEnd}
+    >
+      <Box className={classes.glow} />
+      <Box className={classes.light} />
+    </Box>
+  );
+}

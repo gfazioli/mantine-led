@@ -5,6 +5,7 @@ import {
   createVarsResolver,
   Factory,
   factory,
+  GetStylesApi,
   getSize,
   getSpacing,
   getThemeColor,
@@ -112,11 +113,9 @@ const varsResolver = createVarsResolver<LedSevenSegmentFactory>(
   })
 );
 
-function renderDigit(
-  char: string,
-  index: number,
-  getStyles: (name: string) => Record<string, unknown>
-) {
+type SevenSegmentGetStyles = GetStylesApi<LedSevenSegmentFactory>;
+
+function renderDigit(char: string, index: number, getStyles: SevenSegmentGetStyles) {
   const segments = CHAR_MAP[char] ?? CHAR_MAP[' '];
 
   return (
@@ -133,15 +132,15 @@ function renderDigit(
   );
 }
 
-function renderColon(index: number, getStyles: (name: string) => Record<string, unknown>) {
+function renderColon(index: number, getStyles: SevenSegmentGetStyles) {
   return <Box key={`c-${index}`} {...getStyles('colon')} />;
 }
 
-function renderDot(index: number, getStyles: (name: string) => Record<string, unknown>) {
+function renderDot(index: number, getStyles: SevenSegmentGetStyles) {
   return <Box key={`p-${index}`} {...getStyles('dot')} />;
 }
 
-export const LedSevenSegment = factory<LedSevenSegmentFactory>((_props, ref) => {
+export const LedSevenSegment = factory<LedSevenSegmentFactory>((_props) => {
   const props = useProps('LedSevenSegment', defaultProps, _props);
   const {
     value,
@@ -206,7 +205,7 @@ export const LedSevenSegment = factory<LedSevenSegmentFactory>((_props, ref) => 
   });
 
   return (
-    <Box ref={ref} {...getStyles('root')} {...others}>
+    <Box {...getStyles('root')} {...others}>
       {elements}
     </Box>
   );
