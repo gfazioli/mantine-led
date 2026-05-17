@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   BoxProps,
@@ -16,6 +15,7 @@ import {
   type MantineSize,
   type MantineSpacing,
 } from '@mantine/core';
+import React from 'react';
 import classes from './LedSevenSegment.module.css';
 
 export type LedSevenSegmentStylesNames = 'root' | 'digit' | 'segment' | 'colon' | 'dot';

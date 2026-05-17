@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   BoxProps,
@@ -19,6 +18,7 @@ import {
   type MantineSize,
   type TooltipProps,
 } from '@mantine/core';
+import React from 'react';
 import { LedGroup } from './Group';
 import { LedMatrix } from './Matrix';
 import { LedSevenSegment } from './SevenSegment';

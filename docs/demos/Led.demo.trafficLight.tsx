@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
 import { Led } from '@gfazioli/mantine-led';
 import { Button, Group, Paper, Stack, Text } from '@mantine/core';
 import { MantineDemo } from '@mantinex/demo';
+import { useEffect, useState } from 'react';
 
 type TrafficState = 'red' | 'yellow' | 'green';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   filterProps,
   getBaseValue,
@@ -9,6 +8,7 @@ import {
   useMantineTheme,
   type MantineBreakpoint,
 } from '@mantine/core';
+import React from 'react';
 import type { LedMatrixProps } from './LedMatrix';
 
 interface LedMatrixMediaVariablesProps extends LedMatrixProps {

@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   BoxProps,
@@ -15,6 +14,7 @@ import {
   type MantineSpacing,
   type StyleProp,
 } from '@mantine/core';
+import React from 'react';
 import type { LedAnimationType, LedShape, LedVariant } from '../Led';
 import { LedIndicator } from '../LedIndicator';
 import { LedMatrixMediaVariables } from './LedMatrixMediaVariables';

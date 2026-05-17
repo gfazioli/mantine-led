@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { Divider, Group, Paper, Stack, Text } from '@mantine/core';
+import React, { useState } from 'react';
 import { LedGroup } from './Group';
 import { Led, type LedProps } from './Led';
 import { LedMatrix } from './Matrix';
