@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
 import { Led } from '@gfazioli/mantine-led';
 import { Paper, Stack, Text } from '@mantine/core';
 import { MantineDemo } from '@mantinex/demo';
+import { useEffect, useState } from 'react';
 
 function formatTime(date: Date): string {
   const h = String(date.getHours()).padStart(2, '0');

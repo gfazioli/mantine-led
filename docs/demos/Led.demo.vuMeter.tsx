@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { Led } from '@gfazioli/mantine-led';
 import { Slider, Stack, Text } from '@mantine/core';
 import { MantineDemo } from '@mantinex/demo';
+import { useState } from 'react';
 
 const code = `
 import { useState } from 'react';

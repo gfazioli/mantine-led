@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { Led } from '@gfazioli/mantine-led';
 import { Stack, Text, TextInput } from '@mantine/core';
 import { MantineDemo } from '@mantinex/demo';
+import { useState } from 'react';
 
 function getStrength(password: string): number {
   let score = 0;

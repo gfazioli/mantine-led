@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   getRadius,
@@ -10,6 +9,7 @@ import {
   type MantineRadius,
   type MantineSize,
 } from '@mantine/core';
+import React from 'react';
 import type { LedAnimationType, LedShape, LedVariant } from './Led';
 import classes from './Led.module.css';
 
