@@ -30,9 +30,9 @@ Yarn workspaces monorepo with two workspaces: `package/` (npm package) and `docs
 ### Package Source (`package/src/`)
 - `Led.tsx` / `Led.module.css` — main LED indicator component (polymorphic factory pattern)
 - `LedIndicator.tsx` — internal indicator sub-component
-- `Group/LedGroup.tsx` — compound component `Led.Group` for arranging LEDs in a row
-- `Matrix/LedMatrix.tsx` — compound component `Led.Matrix` for grid layouts
-- `SevenSegment/LedSevenSegment.tsx` — compound component `Led.SevenSegment` for numeric digit display
+- `package/src/Group/LedGroup.tsx` — compound component `Led.Group` for arranging LEDs in a row
+- `package/src/Matrix/LedMatrix.tsx` — compound component `Led.Matrix` for grid layouts
+- `package/src/SevenSegment/LedSevenSegment.tsx` — compound component `Led.SevenSegment` for numeric digit display
 - `Led.test.tsx` / `Led.story.tsx` — tests and stories
 
 ### Build Pipeline
